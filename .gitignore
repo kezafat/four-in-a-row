@@ -59,3 +59,15 @@ typings/
 
 # next.js build output
 .next
+
+# Skip css files (We all know why by now)
+*.css
+
+# Skip sourcemaps (...)
+*.map
+
+#Skip DS_Store files (Please let's NOT) :D
+*.DS_Store
+
+#Lets keep the JSONs ignored aswell. Each dev can have their own localDB
+www/*.json
