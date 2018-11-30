@@ -1,0 +1,18 @@
+@import '_variables-custom';
+
+//Custom mixins that are created by team
+@import '_mixins-custom';
+
+// Here we can add our overrides to the bootstrap !default values. If this file is empty bootstrap goes default.
+@import '_bootstrap-overrides';
+
+//Here we add any custom fonts that we require
+@import '_fonts-custom';
+
+// Here we include the main (and original) boostrap.scss which in its turn imports the entire library.
+@import 'originalbootstrap/bootstrap';
+
+
+// Our own partials for components
+@import '_navbar';
+@import '_start';
