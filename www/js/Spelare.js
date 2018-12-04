@@ -1,6 +1,6 @@
 class Spelare {
     constructor() {
-        this.name = []
+
 
     }
     // Kommer behöva ha klasserna active och player-0/1 
@@ -14,13 +14,13 @@ class Spelare {
     // plus lite styling i sass för klassen 'active'
 
     nextPlayer() {
-        if (activePlayer == this.name[0]) {
-            activePlayer = this.name[1];
+        if (activePlayer == this.playerName[0]) {
+            activePlayer = this.playerName[1];
             $('.player-0').classList.toggle('active');
             $('.player-1').classList.toggle('active');
         }
-        else if (activePlayer == this.name[1]) {
-            activePlayer = this.name[0];
+        else if (activePlayer == this.playerName[1]) {
+            activePlayer = this.playerName[0];
             $('.player-0').classList.toggle('active');
             $('.player-1').classList.toggle('active');
         }
