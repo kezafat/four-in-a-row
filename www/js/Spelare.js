@@ -1,11 +1,9 @@
-class Spelare {
-	constructor(playerName) {
-		playerName = [];
-		[] = playerName;
+class Player {
+	constructor(playerName, playerNumber) {
+		this.playerName = playerName;
+		this.playerNumber = playerNumber
 
-	}
 
-	addPlayer() {
 
 	}
 

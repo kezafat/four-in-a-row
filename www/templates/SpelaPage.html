@@ -6,15 +6,16 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h2 class="mt-5 player-0-h2">Ange spelare ett</h2>
+      <h2 class="mt-5">Ange spelare ett</h2>
+      <p>${this.validate0 ? this.approved : this.declined}</p>
       <div class="input-group">
         <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
           <label class="btn btn-danger human-player-btn">
-            <input type="radio" name="options" id="option1" autocomplete="off"> Människa
+            <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
           </label>
           <label class="btn btn-danger pc-player-btn">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Dator
+            <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
           </label>
         </div>
       </div>
@@ -22,15 +23,16 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h2 class="mt-5 player-1-h2">Ange spelare två</h2>
+      <h2 class="mt-5">Ange spelare två</h2>
+      <p>${this.validate1 ? this.approved : this.declined}</p>
       <div class="input-group">
         <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
           <label class="btn btn-warning human-player-btn">
-            <input type="radio" name="options" id="option1" autocomplete="off"> Människa
+            <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
           </label>
           <label class="btn btn-warning pc-player-btn">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Dator
+            <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
           </label>
         </div>
       </div>
