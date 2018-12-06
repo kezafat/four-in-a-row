@@ -9,8 +9,6 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.approved = '';
-    this.declined = 'Namnet måste vara minst två bokstäver och max åtta';
 
     this.tmpName0 = '';
     this.tmpName1 = '';
@@ -49,7 +47,7 @@ class SpelaPage extends Component {
       this.render();
     }
 
-    if(validated0 && validated1){
+    if (validated0 && validated1) {
       // Här kollar du om båda är godkända samtidigt och pushar enbart in personerna då
       this.players.push(new Player(playerName0, 0));
       this.players.push(new Player(playerName1, 1));
