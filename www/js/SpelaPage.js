@@ -22,6 +22,7 @@ class SpelaPage extends Component {
       console.log(this.players);
     } else {
       this.validate0 = false;
+      this.render();
 
     }
 
@@ -30,6 +31,7 @@ class SpelaPage extends Component {
       console.log(this.players);
     } else {
       this.validate1 = false;
+      this.render();
     }
 
   }
