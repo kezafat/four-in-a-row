@@ -3,6 +3,7 @@ class SpelaPage extends Component{
     super();
     this.addRoute('/spela', 'Spela');
     this.name = "Spelapage";
+    this.board = new Board();
   }
   
 }
