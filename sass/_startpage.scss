@@ -1,0 +1,13 @@
+// All the styles for the baseelement of startpage!
+// Keeping styles like this will allow for custom styles that will not affect other elements on other pages.
+// Base element has .startpage so that the general site styling wont affect my styles.
+
+.startpage {
+  background: #fff;
+  padding: 20px;
+
+  .introduction-box{
+    background:#ffe67e;
+  }
+
+}
