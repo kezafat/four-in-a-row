@@ -16,9 +16,13 @@
 
 .board-border:after{
     content: " ";
-    padding-bottom: 100%;
+    //padding-bottom: 100%;
     display: block;
     border: #000;
+}
+.board-border{
+    width:70vh;
+
 }
 
 
@@ -48,7 +52,7 @@
     width: 100%;
     padding-top: 100%;
     border: 2px solid rgb(180, 157, 157);
-    background-color: rgb(21, 88, 231);
+    background-image: url("/img/1.jpg");
     box-shadow: 0 0 10px #000;
     position:relative;
 }
