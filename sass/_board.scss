@@ -16,9 +16,13 @@
 
 .board-border:after{
     content: " ";
-    padding-bottom: 100%;
+    //padding-bottom: 100%;
     display: block;
     border: #000;
+}
+.board-border{
+    width:70vh;
+
 }
 
 
