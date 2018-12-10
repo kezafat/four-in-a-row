@@ -12,6 +12,7 @@ class SpelaPage extends Component {
     this.tmpName0 = '';
     this.tmpName1 = '';
     this.gameMode = false;
+    this.board = new Board();
   }
   checkName() {
     let playerName0 = $('.player-0-name').val();
