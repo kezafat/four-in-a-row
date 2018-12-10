@@ -3,7 +3,8 @@ class SpelaPage extends Component {
     super();
     this.addRoute('/spela', 'Spela');
     this.addEvents({
-      'click .start-btn': 'checkName'
+      'click .start-btn': 'checkName',
+      'click .abort-game': 'updatePlayerPage'
     });
     this.name = "Spelapage";
     this.players = [];
@@ -14,6 +15,10 @@ class SpelaPage extends Component {
     this.gameMode = false;
     this.board = new Board();
   }
+  updatePlayerPage() {
+    this.gameMode = false;
+  }
+
   checkName() {
     let playerName0 = $('.player-0-name').val();
     let playerName1 = $('.player-1-name').val();
