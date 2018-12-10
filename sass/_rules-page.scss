@@ -1,5 +1,17 @@
-@media screen and (max-width: 765px) {
-  .hide-img{
+.regler-page{
+  @media screen and (max-width: 1000px) {
+    .move-img{
+      padding-top: 150px;
+      }
+  }
+  @media screen and (max-width: 1000px) {
+    .move-top-img{
+      padding-top: 55px;
+      }
+  }
+    @media screen and (max-width: 765px) {
+    .hide-img{
     display: none;
+    }
   }
 }
