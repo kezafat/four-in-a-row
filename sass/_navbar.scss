@@ -1,3 +1,11 @@
+.navbar-brand{
+  font-size: 34px;
+   padding: 1rem;
+   :nth-child(){
+     margin: 0;
+   }
+}
+
 .logoimg{
   width: 45px;
   height:45px;
