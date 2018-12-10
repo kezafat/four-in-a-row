@@ -10,13 +10,17 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = '';
-    this.tmpName1 = '';
+    // Added preset names to both players so you can click play without having to fill in names everytime
+    // This is for testing purposes and both names should be empty strings when you are ready to rock
+    this.tmpName0 = 'Daniel';
+    this.tmpName1 = 'Hamid';
     this.gameMode = false;
     this.board = new Board();
   }
   updatePlayerPage() {
     this.gameMode = false;
+    // ALSO empty array of players when game is aborted.
+    this.players = [];
     this.render();
   }
 

@@ -5,9 +5,6 @@ class Player {
 
 
 	}
-	get playerNameGame() {
-		return this.playerName;
-	}
 
 	// Kommer behöva ha klasserna active och player-0/1 
 	// i spelarnas divar. Samt detta som körs en gång när
