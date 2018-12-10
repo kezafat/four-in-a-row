@@ -9,9 +9,9 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-
     this.tmpName0 = '';
     this.tmpName1 = '';
+    this.gameMode = false;
   }
   checkName() {
     let playerName0 = $('.player-0-name').val();
@@ -51,6 +51,7 @@ class SpelaPage extends Component {
       // Här kollar du om båda är godkända samtidigt och pushar enbart in personerna då
       this.players.push(new Player(playerName0, 0));
       this.players.push(new Player(playerName1, 1));
+      this.gameMode = true;
     }
 
     // Och denna är egentligen självförklarande :P

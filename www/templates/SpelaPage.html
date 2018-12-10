@@ -1,46 +1,54 @@
 <div>
-  <div class="row">
-    <div class="col-12">
-      <a href="/" class="btn btn-danger btn-block">Avbryt</a>
+  <div class="${this.gameMode ? 'd-none' : 'd-block'}">
+    <div class="row">
+      <div class="col-12">
+        <a href="/" class="btn btn-danger btn-block">Avbryt</a>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="mt-5">Ange spelare ett</h2>
-      <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
-      <div class="input-group">
-        <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4" value="${this.tmpName0}">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-danger human-player-btn">
-            <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
-          </label>
-          <label class="btn btn-danger pc-player-btn">
-            <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
-          </label>
+    <div class="row">
+      <div class="col-12">
+        <h2 class="mt-5">Ange spelare ett</h2>
+        <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
+        <div class="input-group">
+          <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
+            value="${this.tmpName0}">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-danger human-player-btn">
+              <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
+            </label>
+            <label class="btn btn-danger pc-player-btn disabled">
+              <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
+            </label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="mt-5">Ange spelare två</h2>
-      <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
-      <div class="input-group">
-        <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4" value="${this.tmpName1}">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-warning human-player-btn">
-            <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
-          </label>
-          <label class="btn btn-warning pc-player-btn">
-            <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
-          </label>
+    <div class="row">
+      <div class="col-12">
+        <h2 class="mt-5">Ange spelare två</h2>
+        <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
+        <div class="input-group">
+          <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
+            value="${this.tmpName1}">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-warning human-player-btn">
+              <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
+            </label>
+            <label class="btn btn-warning pc-player-btn disabled">
+              <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
+            </label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <a href="#" class="btn btn-success btn-lg float-right mt-5 start-btn" role="button">Starta spelet</a>
+    <div class="row">
+      <div class="col-12">
+        <a href="#" class="btn btn-success btn-lg float-right mt-5 start-btn" role="button">Starta spelet</a>
+      </div>
     </div>
   </div>
+  <div class="${this.gameMode ? 'd-block' : 'd-none'}">
+    <h1>Game Mode is on!</h1>
+  </div>
+
 </div>
