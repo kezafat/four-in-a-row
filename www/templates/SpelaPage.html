@@ -48,8 +48,22 @@
     </div>
   </div>
   <div class="${this.gameMode ? 'd-block' : 'd-none'}">
-    ${this.board}
+    <div class="row mb-3">
+      <div class="col-4 float-left">
+        <h1 class="text-center">${this.players[0].playerNameGame}</h1>
+      </div>
+      <div class="col-4 float-center ">
+        <div class="row">
+          <button class="btn btn-danger btn-lg active abort-game col-12" role="button" aria-pressed="true">Avbryt</button>
+        </div>
+      </div>
+      <div class="col-4 offset-12 float-right">
+        <h1 class="text-center">${this.players[1].playerNameGame}</h1>
+      </div>
+    </div>
+    <div>
+      ${this.board}
+    </div>
   </div>
 
 </div>
-

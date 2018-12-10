@@ -1,10 +1,12 @@
 class Player {
-	constructor(playerName, playerNumber) {
+	constructor(playerName = "asdf", playerNumber) {
 		this.playerName = playerName;
 		this.playerNumber = playerNumber
 
 
-
+	}
+	get playerNameGame() {
+		return this.playerName;
 	}
 
 	// Kommer behöva ha klasserna active och player-0/1 

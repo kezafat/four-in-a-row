@@ -17,6 +17,7 @@ class SpelaPage extends Component {
   }
   updatePlayerPage() {
     this.gameMode = false;
+    this.render();
   }
 
   checkName() {
