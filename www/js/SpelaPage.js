@@ -16,7 +16,9 @@ class SpelaPage extends Component {
     this.tmpName1 = 'Hamid';
     this.gameMode = false;
     this.board = new Board();
+    this.activePlayer = true;
   }
+  // activePlayer ställs om till false/true så byts aktiv spelare.
   updatePlayerPage() {
     this.gameMode = false;
     // ALSO empty array of players when game is aborted.

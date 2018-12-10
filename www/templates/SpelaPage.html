@@ -13,10 +13,10 @@
           <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
             value="${this.tmpName0}">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-danger human-player-btn">
+            <label class="btn btn-danger">
               <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
             </label>
-            <label class="btn btn-danger pc-player-btn disabled">
+            <label class="btn btn-danger disabled">
               <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
             </label>
           </div>
@@ -31,10 +31,10 @@
           <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
             value="${this.tmpName1}">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-warning human-player-btn">
+            <label class="btn btn-warning">
               <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
             </label>
-            <label class="btn btn-warning pc-player-btn disabled">
+            <label class="btn btn-warning disabled">
               <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
             </label>
           </div>
@@ -49,21 +49,20 @@
   </div>
   <div class="${this.gameMode ? 'd-block' : 'd-none'}">
     <div class="row mb-3">
-      <div class="col-4 float-left">
-        <h1 class="text-center">${this.tmpName0}</h1>
+      <div class="col-4 float-left text-center">
+        <h1 class="${this.activePlayer ? 'text-success' : 'text-muted'}">${this.tmpName0}</h1>
       </div>
       <div class="col-4 float-center ">
         <div class="row">
           <button class="btn btn-danger btn-lg active abort-game col-12" role="button" aria-pressed="true">Avbryt</button>
         </div>
       </div>
-      <div class="col-4 offset-12 float-right">
-        <h1 class="text-center">${this.tmpName1}</h1>
+      <div class="col-4 offset-12 float-right text-center">
+        <h1 class="${this.activePlayer ? 'text-muted' : 'text-success'}">${this.tmpName1}</h1>
       </div>
     </div>
     <div>
       ${this.board}
     </div>
   </div>
-
 </div>
