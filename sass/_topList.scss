@@ -1,0 +1,25 @@
+ .call-outs-container{
+
+    max-width: 1400px;
+    margin:  auto 0 auto 0 auto 0;
+    display: flex;
+
+  }
+  .call-out{
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    flex-basis: 100%;
+    } 
+
+  @media (min-width: 900px) {
+    .call-outs-container{
+      display: flex; 
+    justify-content: space-between;
+    
+    }
+  }
+
+
+
+
