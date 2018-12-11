@@ -3,6 +3,14 @@
     display: block;
     border: #000;
 }
+
+.board-border{
+    margin: 0 auto;
+    @include media-breakpoint-between(md, xl){
+        width: 65%;
+     }
+}
+
 .column{
     width: 14.28%;
     float: left;
