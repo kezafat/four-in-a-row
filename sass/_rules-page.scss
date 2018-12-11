@@ -8,19 +8,24 @@
       padding: 10px;
       border-radius: 5px;
   }
-  
-  @media screen and (max-width: 1000px) {
-    .move-img{
-      padding-top: 150px;
-      }
+  .move-img{
+    padding-left:75px;
+    @include media-breakpoint-up(md) {
+      padding-left: 45px;
+      width: 90%;
+     }
   }
-  @media screen and (max-width: 1000px) {
-    .move-top-img{
-      padding-top: 55px;
-      }
+  .move-top-img{
+    padding-left:75px;
+
+    @include media-breakpoint-up(md) {
+      padding-left: 45px;
+      width: 90%; 
+    }
   }
-    @media screen and (max-width: 765px) {
-    .hide-img{
+
+  .hide-img{
+    @media (max-width: 991.98px)  {
     display: none;
     }
   }
