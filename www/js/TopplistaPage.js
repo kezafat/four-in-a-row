@@ -4,5 +4,4 @@ class TopplistaPage extends Component{
     this.addRoute('/topplista', 'Topplistan');
     this.name = "Topplista";
   }
-  
 }

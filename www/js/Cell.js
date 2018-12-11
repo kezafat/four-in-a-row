@@ -1,10 +1,7 @@
 class Cell extends Component{
-
     constructor(colNum, cellNum){
-        super()
+        super();
         this.colNum = colNum;
-        this.cellNum = cellNum;
-           
+        this.cellNum = cellNum;   
     }
-    
 }
