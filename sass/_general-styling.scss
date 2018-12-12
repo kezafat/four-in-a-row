@@ -3,7 +3,6 @@ h1,h2,h3,h4,h5,h6{
 }
 h1,
 h2 {
-  font-family: $startpage_heading_font;
   word-spacing: 2px;
   letter-spacing: 2px;
   @include media-breakpoint-down(sm) {
@@ -29,13 +28,9 @@ p{
 }
 
 p{
+  line-height: 1.5;
   font-family: $font-stack;
-  line-height: 1,5;
+
 }
-.nav-item{
-  $font-stack:'Karla';
-  word-spacing: 1px;
-  letter-spacing: 2px;
-  font-size: 1.4rem;
-}
+
 
