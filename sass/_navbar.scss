@@ -2,10 +2,21 @@
   margin-top: 1rem;
   padding: 0;
  
+  }
   .navbar-brand{
-    font-size: 34px;
+    font-size: 30px;
     padding: 0;
     margin-right: 0;
+    margin-left: 180px;
+    @include media-breakpoint-only(lg) {
+      margin-left: 140px;
+    }
+    @include media-breakpoint-down(md) {
+      margin-left: 0;
+    }
+    @include media-breakpoint-only(xs) {
+      display:none;
+    }
     :nth-child(){
      margin: 0;
     }
@@ -17,9 +28,10 @@
  }
 }
 
+.navbar-collapse{
+  margin-left:15px;
+}
 .nav-item{
   $font-stack:'Karla';
-  word-spacing: 1px;
-  letter-spacing: 2px;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
