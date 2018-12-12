@@ -1,99 +1,38 @@
-
-
-
-
-
-// .board-border{
-
-//    /* background-color: rgb(21, 88, 231);
-//     width: 70%;
-//     border:2px solid #000;
-//     box-shadow: 0 0 10px #000;
-//   */
-// }
-
-
-
-.board-border:after{
-    content: " ";
-    padding-bottom: 100%;
-    display: block;
-    border: #000;
+.board-border:after {
+  content: " ";
+  padding-bottom: 100%;
+  display: block;
+  border: #000;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.column{
-    width: 14.28%;
-    float: left;
+.column {
+  width: 14.28%;
+  float: left;
 }
-
 
 .cell {
-    width: 100%;
-    padding-top: 100%;
-    border: 2px solid rgb(180, 157, 157);
-    background-color: rgb(21, 88, 231);
-    box-shadow: 0 0 10px #000;
-    position:relative;
+  width: 100%;
+  padding-top: 100%;
+  border: 2px solid rgb(180, 157, 157);
+  background-image: url("/img/1.jpg");
+  box-shadow: 0 0 10px #000;
+  position: relative;
 }
 
-/*
-.cell:after{
-    content: " ";
-    padding-bottom: 100%;
-    display: block;
-    border: #000;
-    
-}
-*/
- 
-
-.cell > div{
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    border: 2px solid rgb(195, 35, 35);
-    border-radius: 50%;
-    background-color: white;
+.cell>div {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  border: 2px solid rgb(195, 35, 35);
+  border-radius: 50%;
 }
 
+.nochip {
+  background-color: #eee;
+}
 
-
-/*
-.cell > div:after{
-    content: " ";
-    padding-bottom: 50%;
-    display: block;
-    border: #000;
-
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
+.testchip{
+  background-color: #eb0069;
+}
