@@ -1,18 +1,19 @@
-.navbar{
+.navbar {
   margin-top: 1rem;
   padding: 0;
- 
-  .navbar-brand{
+
+  .nav-item {
+    padding-inline-start: 1rem;
+    }
+  .navbar-brand {
     font-size: 34px;
     padding: 0;
     margin-right: 0;
-    :nth-child(){
-     margin: 0;
-    }
   }
 
-.logoimg{
+.logoimg {
   width: 45px;
   height:45px;
  }
 }
+
