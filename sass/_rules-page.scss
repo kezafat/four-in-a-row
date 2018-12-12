@@ -1,16 +1,40 @@
 .regler-page{
-  @media screen and (max-width: 1000px) {
-    .move-img{
-      padding-top: 150px;
-      }
+  background: #ffdf79;
+  padding: 20px;
+  box-shadow: 0 1px 2px #222;
+  border-radius: 5px;
+  .boarder{
+      background: #000000a3;
+      padding: 10px;
+      border-radius: 5px;
   }
-  @media screen and (max-width: 1000px) {
-    .move-top-img{
-      padding-top: 55px;
-      }
+  .move-img{
+    padding-left:75px;
+    width: 90%;
+    @include media-breakpoint-between(lg, xl) {
+      padding-left: 45px;
+     }
+     @include media-breakpoint-only(md) {
+      padding:210px 0px 0px 5px;
+      width: 110%;
+
+    }
   }
-    @media screen and (max-width: 765px) {
-    .hide-img{
+  .move-top-img{
+    padding-left:75px;
+
+    @include media-breakpoint-between(lg, xl) {
+      padding-left: 45px;
+    }
+    @include media-breakpoint-only(md) {
+      padding:50px 0px 0px 5px;
+      width: 110%;
+     }
+
+  }
+
+  .hide-img{
+    @include media-breakpoint-between(xs, sm) {
     display: none;
     }
   }
