@@ -26,7 +26,7 @@ class Column extends Component {
         console.log(this.activePlayer);
         // SET who owns this cell in any method you prefer (this string is also a CSS class that sets the color, see _board.scss)
         if (this.activePlayer) {
-          cellData.cellTaken = "testchip";
+          cellData.cellTaken = "chip0";
           this.cellsTaken.push("d");
           this.activePlayer = false;
           // SET player turn here and then render
@@ -34,7 +34,7 @@ class Column extends Component {
           break;
         }
         else if (!this.activePlayer) {
-          cellData.cellTaken = "chip2";
+          cellData.cellTaken = "chip1";
           this.cellsTaken.push("e");
           this.activePlayer = true;
           // SET player turn here and then render
