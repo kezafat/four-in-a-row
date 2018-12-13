@@ -6,7 +6,7 @@ class Column extends Component {
     this.cells = [];
     this.cellsTaken = [];
     this.makeCells();
-
+    this.activePlayer = true;
     this.addEvents({
       //Short function name I know :(
       'click .cell': 'checkColumnAvailabilityAndAlsoAddaChipToTheBoardyThing'
@@ -23,12 +23,24 @@ class Column extends Component {
       let cellStatus = cellData.cellTaken;
       if (cellStatus === "nochip") {
         console.log("Col:", this.cNum, "--> put a chip in cell:", i);
+        console.log(this.activePlayer);
         // SET who owns this cell in any method you prefer (this string is also a CSS class that sets the color, see _board.scss)
-        cellData.cellTaken = "testchip";
-        this.cellsTaken.push("d");
-        // SET player turn here and then render
-        this.render();
-        break;
+        if (this.activePlayer) {
+          cellData.cellTaken = "testchip";
+          this.cellsTaken.push("d");
+          this.activePlayer = false;
+          // SET player turn here and then render
+          this.render();
+          break;
+        }
+        else if (!this.activePlayer) {
+          cellData.cellTaken = "chip2";
+          this.cellsTaken.push("e");
+          this.activePlayer = true;
+          // SET player turn here and then render
+          this.render();
+          break;
+        }
       } else if (this.cellsTaken.length === this.cells.length) {
         // Handle what happens if a move is NOT valid because of full column
         console.warn("No more empty cells in:", this.cNum);
