@@ -6,36 +6,27 @@ class Column extends Component {
     this.cells = [];
     this.cellsTaken = [];
     this.makeCells();
-    this.activePlayer = true;
     this.addEvents({
       'click .cell': 'placeChip'
     });
   }
 
-  // #### NOTE TO NEXT DEV: I left some console logs for your convenience.
-  // #### Pop open the console and see what's going on, remove them when everything is crystal clear.
-  // #### Since this task is only for adding a chip, please do your magic and remove these comments while doing so.
   placeChip() {
     for (let i = this.cells.length; i > 0; i--) {
       let cellData = this.cells[i - 1];
       let cellStatus = cellData.cellTakenBy;
       if (cellStatus === "nochip") {
-        console.log("Col:", this.cNum, "--> put a chip in cell:", i);
-        console.log(this.activePlayer);
-        // SET who owns this cell in any method you prefer (this string is also a CSS class that sets the color, see _board.scss)
         if (this.activePlayer) {
-          cellData.cellTaken = "chip0";
+          cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
           this.cellsTaken.push("d");
-          this.activePlayer = false;
-          // SET player turn here and then render
+          Board.activePlayer = !Board.activePlayer;
           this.render();
           break;
         }
         else if (!this.activePlayer) {
-          cellData.cellTaken = "chip1";
+          cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
           this.cellsTaken.push("e");
-          this.activePlayer = true;
-          // SET player turn here and then render
+          Board.activePlayer = !Board.activePlayer;
           this.render();
           break;
         }
