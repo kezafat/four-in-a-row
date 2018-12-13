@@ -4,6 +4,7 @@ class Board extends Component {
     super();
     this.columns = [];
     this.makeColumns();
+    Board.activePlayer = true;
   }
 
   makeColumns() {
