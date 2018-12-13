@@ -8,19 +8,17 @@ class Column extends Component {
     this.makeCells();
     this.activePlayer = true;
     this.addEvents({
-      //Short function name I know :(
-      'click .cell': 'checkColumnAvailabilityAndAlsoAddaChipToTheBoardyThing'
+      'click .cell': 'placeChip'
     });
   }
 
   // #### NOTE TO NEXT DEV: I left some console logs for your convenience.
   // #### Pop open the console and see what's going on, remove them when everything is crystal clear.
-  // #### Since this task is only for adding a chip, I would be a bad boy for doing more than console.logs. But still a good boy for putting them here ;D
-  checkColumnAvailabilityAndAlsoAddaChipToTheBoardyThing() {
-    // Loop in REVERSE since the designer of the board and columns chose ascending numerical order on descending cell order.
+  // #### Since this task is only for adding a chip, please do your magic and remove these comments while doing so.
+  placeChip() {
     for (let i = this.cells.length; i > 0; i--) {
       let cellData = this.cells[i - 1];
-      let cellStatus = cellData.cellTaken;
+      let cellStatus = cellData.cellTakenBy;
       if (cellStatus === "nochip") {
         console.log("Col:", this.cNum, "--> put a chip in cell:", i);
         console.log(this.activePlayer);
