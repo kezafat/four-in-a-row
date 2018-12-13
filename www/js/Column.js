@@ -20,6 +20,7 @@ class Column extends Component {
           cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
           this.cellsTaken.push("d");
           Board.activePlayer = !Board.activePlayer;
+          SpelaPage.updatePlayerActive(Board.activePlayer);
           this.render();
           break;
         }
@@ -27,6 +28,7 @@ class Column extends Component {
           cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
           this.cellsTaken.push("e");
           Board.activePlayer = !Board.activePlayer;
+          SpelaPage.updatePlayerActive(Board.activePlayer);
           this.render();
           break;
         }

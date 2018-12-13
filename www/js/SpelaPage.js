@@ -16,8 +16,14 @@ class SpelaPage extends Component {
     this.tmpName1 = 'Hamid';
     this.gameMode = false;
     this.board = new Board();
+    this.nameChange = true;
 
   }
+  updatePlayerActive(a) {
+    this.nameChange = a;
+    render();
+  }
+
   updatePlayerPage() {
     this.gameMode = false;
     // ALSO empty array of players when game is aborted.
