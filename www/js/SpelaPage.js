@@ -21,7 +21,7 @@ class SpelaPage extends Component {
   }
   updatePlayerActive(a) {
     this.nameChange = a;
-    render();
+    this.render();
   }
 
   updatePlayerPage() {
