@@ -1,4 +1,5 @@
-@import '_variables-custom';
+// Here we include the main (and original) boostrap.scss which in its turn imports the entire library.
+@import 'originalbootstrap/bootstrap';
 
 //Custom mixins that are created by team
 @import '_mixins-custom';
@@ -9,8 +10,10 @@
 //Here we add any custom fonts that we require
 @import '_fonts-custom';
 
-// Here we include the main (and original) boostrap.scss which in its turn imports the entire library.
-@import 'originalbootstrap/bootstrap';
+// Our own variables
+@import '_variables-custom';
+
+
 
 
 // Our own partials for components
@@ -18,6 +21,8 @@
 @import '_start';
 @import '_startpage';
 @import '_board';
+@import '_topList';
 @import '_footer';
 @import '_body';
 @import '_rules-page';
+@import '_general-styling';
