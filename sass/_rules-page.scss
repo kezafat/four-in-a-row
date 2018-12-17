@@ -1,8 +1,4 @@
 .regler-page{
-  background: #ffdf79;
-  padding: 20px;
-  box-shadow: 0 1px 2px #222;
-  border-radius: 5px;
   .boarder{
       background: #000000a3;
       padding: 10px;
@@ -17,18 +13,19 @@
      @include media-breakpoint-only(md) {
       padding:210px 0px 0px 5px;
       width: 110%;
-
     }
   }
   .move-top-img{
     padding-left:75px;
-
+    width: 90%;
     @include media-breakpoint-between(lg, xl) {
-      padding-left: 45px;
+      padding: 10px 0px 80px 45px;
     }
+    @include media-breakpoint-only(lg) {
+      padding:85px 0px 100px 45px;
+     }
     @include media-breakpoint-only(md) {
-      padding:50px 0px 0px 5px;
-      width: 110%;
+      padding:85px 0px 85px 45px;
      }
 
   }

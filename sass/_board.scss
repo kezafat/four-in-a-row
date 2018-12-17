@@ -5,43 +5,43 @@
   border: #000;
 }
 
-.board-border{
-    margin: 0 auto;
-    @include media-breakpoint-between(md, xl){
-        width: 65%;
-     }
-.column {
-  width: 14.28%;
-  float: left;
-}
-.column{
+.board-border {
+  margin: 0 auto;
+  @include media-breakpoint-between(md, xl) {
+    width: 65%;
+  }
+  .column {
     width: 14.28%;
     float: left;
-}
-.cell {
-  width: 100%;
-  padding-top: 100%;
-  border: 2px solid rgb(180, 157, 157);
-  background-image: url("/img/1.jpg");
-  box-shadow: 0 0 10px #000;
-  position: relative;
-}
-
-.cell>div {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  border: 2px solid rgb(195, 35, 35);
-  border-radius: 50%;
-}
-
-.nochip {
-  background-color: #eee;
-}
-
-.testchip{
-  background-color: #eb0069;
+  }
+  .column {
+    width: 14.28%;
+    float: left;
+  }
+  .cell {
+    width: 100%;
+    padding-top: 100%;
+    border: 2px solid rgb(180, 157, 157);
+    background-image: url("/img/1.jpg");
+    box-shadow: 0 0 10px #000;
+    position: relative;
+  }
+  .cell>div {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border: 2px solid rgb(195, 35, 35);
+    border-radius: 50%;
+  }
+  .nochip {
+    background-color: #eee;
+  }
+  .chip0 {
+    background-color: #dc3545;
+  }
+  .chip1 {
+    background-color: #ffc107;
   }
 }
