@@ -20,7 +20,6 @@ class Column extends Component {
           cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
           this.cellsTaken.push("d");
           Board.activePlayer = !Board.activePlayer;
-          SpelaPage.updatePlayerActive(`${Number(Board.activePlayer)}`);
           this.render();
           break;
         }
@@ -28,12 +27,10 @@ class Column extends Component {
           cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
           this.cellsTaken.push("e");
           Board.activePlayer = !Board.activePlayer;
-          SpelaPage.updatePlayerActive(`${Number(Board.activePlayer)}`);
           this.render();
           break;
         }
       } else if (this.cellsTaken.length === this.cells.length) {
-        // Handle what happens if a move is NOT valid because of full column
         console.warn("No more empty cells in:", this.cNum);
         break;
       }
