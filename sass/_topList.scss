@@ -1,22 +1,22 @@
-
-.thumb{
-  padding:60 10px;
-  background: #ddd;
+.thumb {
+  background: #ffdf79;
   box-shadow: 0 1px 2px #222;
+  padding: 20px;
   text-align: center;
   border-radius: 5px;
-
-  h1
-   {
+  h1 {
     font-family: $startpage_heading_font;
     word-spacing: 2px;
     letter-spacing: 2px;
+
     @include media-breakpoint-down(sm) {
       font-size: 2rem;
     }
+
     @include media-breakpoint-up(md) {
       font-size: 3rem;
     }
+
     @include media-breakpoint-up(lg) {
       font-size: 4rem;
     }
