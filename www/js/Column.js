@@ -31,7 +31,6 @@ class Column extends Component {
           break;
         }
       } else if (this.cellsTaken.length === this.cells.length) {
-        // Handle what happens if a move is NOT valid because of full column
         console.warn("No more empty cells in:", this.cNum);
         break;
       }

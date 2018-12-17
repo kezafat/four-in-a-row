@@ -10,8 +10,6 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    // Added preset names to both players so you can click play without having to fill in names everytime
-    // This is for testing purposes and both names should be empty strings when you are ready to rock
     this.tmpName0 = '';
     this.tmpName1 = '';
     this.gameMode = false;
@@ -20,7 +18,6 @@ class SpelaPage extends Component {
 
   updatePlayerPage() {
     this.gameMode = false;
-    // ALSO empty array of players when game is aborted.
     this.players = [];
     this.render();
   }
@@ -29,14 +26,9 @@ class SpelaPage extends Component {
     let playerName0 = $('.player-0-name').val();
     let playerName1 = $('.player-1-name').val();
 
-    // Lagra namnen i klassen så man inte behöver fylla i dessa igen varje gång ett namn misslyckas
-    // Dessa printas ut som value attribut i respektive inputfält. Tomma strängar från början
     this.tmpName0 = playerName0;
     this.tmpName1 = playerName1;
 
-    // Använd dessa 2 variabler för att internt kolla om personens namn är godkänt eller ej
-    // Längst ner gör du en enkel if som kollar båda namnen och pushar dessa ENBART om båda är godkända.
-    // Annars plottras this.players ner med massa spelare för varje misslyckat försök och det vill du inte.
     let validated0 = false;
     let validated1 = false;
 
@@ -59,15 +51,10 @@ class SpelaPage extends Component {
     }
 
     if (validated0 && validated1) {
-      // Här kollar du om båda är godkända samtidigt och pushar enbart in personerna då
       this.players.push(new Player(playerName0, 0));
       this.players.push(new Player(playerName1, 1));
       this.gameMode = true;
     }
-
-    // Och denna är egentligen självförklarande :P
-    console.log("this.players innehåller", this.players);
-
   }
 
 }
