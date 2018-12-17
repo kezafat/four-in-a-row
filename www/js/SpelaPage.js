@@ -16,12 +16,6 @@ class SpelaPage extends Component {
     this.tmpName1 = '';
     this.gameMode = false;
     this.board = new Board();
-    this.nameChange = true;
-
-  }
-  updatePlayerActive(a) {
-    this.nameChange = a;
-    this.render();
   }
 
   updatePlayerPage() {
@@ -53,7 +47,6 @@ class SpelaPage extends Component {
     } else {
       this.validate0 = false;
       this.render();
-
     }
 
     if (playerName1.length >= 2 && playerName1.length < 10) {
