@@ -1,10 +1,11 @@
 class Column extends Component {
 
-  constructor(cNum) {
+  constructor(SpelaPage, cNum) {
     super();
     this.cNum = cNum;
     this.cells = [];
     this.cellsTaken = [];
+    this.SpelaPage = SpelaPage;
     this.makeCells();
     this.addEvents({
       'click .cell': 'placeChip'
@@ -16,22 +17,13 @@ class Column extends Component {
       let cellData = this.cells[i - 1];
       let cellStatus = cellData.cellTakenBy;
       if (cellStatus === "nochip") {
-        if (this.activePlayer) {
-          cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
-          this.cellsTaken.push("d");
-          Board.activePlayer = !Board.activePlayer;
-          this.render();
-          break;
-        }
-        else if (!this.activePlayer) {
-          cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
-          this.cellsTaken.push("e");
-          Board.activePlayer = !Board.activePlayer;
-          this.render();
-          break;
-        }
+        cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
+        this.cellsTaken.push(Board.activePlayer);
+        Board.activePlayer = !Board.activePlayer;
+        this.SpelaPage.render();
+        break;
       } else if (this.cellsTaken.length === this.cells.length) {
-        console.warn("No more empty cells in:", this.cNum);
+        // No more empty cells in this col
         break;
       }
     }
