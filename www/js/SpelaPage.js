@@ -71,6 +71,7 @@ class SpelaPage extends Component {
       this.players.push(new Player(playerName0, 0, this.playerType0));
       this.players.push(new Player(playerName1, 1, this.playerType1));
       this.gameMode = true;
+      console.log(this.players)
     }
   }
 
