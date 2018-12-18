@@ -1,15 +1,16 @@
 class Board extends Component {
 
-  constructor() {
+  constructor(SpelaPage) {
     super();
     this.columns = [];
+    this.SpelaPage = SpelaPage;
     this.makeColumns();
-    Board.activePlayer = true;
+    Board.activePlayer = false;
   }
 
   makeColumns() {
     for (let i = 1; i <= 7; i++) {
-      this.columns.push(new Column(i));
+      this.columns.push(new Column(this.SpelaPage, i));
     }
   }
 
