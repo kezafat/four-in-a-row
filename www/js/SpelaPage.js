@@ -54,12 +54,13 @@ class SpelaPage extends Component {
       this.validate1 = false;
       this.render();
     }
+
     if (validated0 && validated1) {
       if (this.playerType0 === "human") {
         this.tmpName0 = "🤓 " + this.tmpName0;
       }
       else {
-        this.tmpName0 = "🤖 " + + this.tmpName0;
+        this.tmpName0 = "🤖 " + this.tmpName0;
       }
       if (this.playerType1 === "human") {
         this.tmpName1 += " 🤓";
@@ -67,12 +68,9 @@ class SpelaPage extends Component {
       else {
         this.tmpName1 += " 🤖";
       }
-    }
-    if (validated0 && validated1) {
       this.players.push(new Player(playerName0, 0, this.playerType0));
       this.players.push(new Player(playerName1, 1, this.playerType1));
       this.gameMode = true;
-      console.log(this.players)
     }
   }
 
