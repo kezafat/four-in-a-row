@@ -1,6 +1,6 @@
-<section>
+<section class="gamePage">
   <div class="${this.gameMode ? 'd-none' : 'd-block'}">
-    <section class="gamePage">
+    <section>
       <div>
         <div class="row">
           <div class="col-12">
@@ -15,11 +15,11 @@
               <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
                 value="${this.tmpName0}">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-danger">
-                  <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
+                <label class="btn btn-danger active">
+                  <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
                 </label>
-                <label class="btn btn-danger disabled">
-                  <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
+                <label class="btn btn-danger">
+                  <input type="radio" name="player-0-type" id="option2" autocomplete="off" value="pc"> Dator
                 </label>
               </div>
             </div>
@@ -33,11 +33,11 @@
               <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
                 value="${this.tmpName1}">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-warning">
-                  <input type="radio" name="options" id="option1" autocomplete="off" data-player-type="human"> Människa
+                <label class="btn btn-warning active">
+                  <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
                 </label>
-                <label class="btn btn-warning disabled">
-                  <input type="radio" name="options" id="option2" autocomplete="off" data-player-type="pc"> Dator
+                <label class="btn btn-warning">
+                  <input type="radio" name="player-1-type" id="option2" autocomplete="off" value="pc"> Dator
                 </label>
               </div>
             </div>
@@ -52,9 +52,14 @@
     </div>
     <div class="${this.gameMode ? 'd-block' : 'd-none'}">
       <section>
+        <div class="row">
+          <div class="col-12">
+          </div>
+        </div>
         <div class="row mb-3">
           <div class="col-4 float-left text-center">
-            <h1 class="">${this.tmpName0}</h1>
+            <h2 class="${!Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName0}
+            </h2>
           </div>
           <div class="col-4 float-center ">
             <div class="row">
@@ -62,7 +67,7 @@
             </div>
           </div>
           <div class="col-4 offset-12 float-right text-center">
-            <h1 class="">${this.tmpName1}</h1>
+            <h2 class="${Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName1}</h2>
           </div>
         </div>
         <div>
