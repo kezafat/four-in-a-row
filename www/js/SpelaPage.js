@@ -14,6 +14,8 @@ class SpelaPage extends Component {
     this.tmpName1 = 'Daniel';
     this.gameMode = false;
     this.board = new Board(this);
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 5;
+    this.alert = new Alert();
   }
 
   updatePlayerPage() {
@@ -74,6 +76,13 @@ class SpelaPage extends Component {
       this.players.push(new Player(playerName1, 1, this.playerType1));
       this.gameMode = true;
     }
+  }
+  checkWin(){
+    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
+      this.baseEl.find('.game-over').show();
+    
+    }
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
   }
 
 }
