@@ -7,15 +7,15 @@
             <a href="/" class="btn btn-danger btn-block">Avbryt</a>
           </div>
         </div>
-        <div class="row">
+        <div class="row playerInputPage">
           <div class="col-12">
-            <p class="mt-5 display-4">Ange spelare ett</p>
+            <h2 class="mt-5 mb-4">Ange spelare ett</h2>
             <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
             <div class="input-group">
               <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
                 value="${this.tmpName0}">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-danger active">
+                <label class="btn btn-danger active rounded-0">
                   <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
                 </label>
                 <label class="btn btn-danger">
@@ -25,15 +25,15 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row playerInputPage">
           <div class="col-12">
-            <p class="mt-5 display-4">Ange spelare två</p>
+            <h2 class="mt-5 mb-4">Ange spelare två</h2>
             <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
             <div class="input-group">
               <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
                 value="${this.tmpName1}">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-warning active">
+                <label class="btn btn-warning active rounded-0">
                   <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
                 </label>
                 <label class="btn btn-warning">
