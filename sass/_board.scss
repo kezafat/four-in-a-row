@@ -4,12 +4,11 @@
   display: block;
   border: #000;
 }
-
 .board-border {
-  margin: 0 auto;
-  @include media-breakpoint-between(md, xl) {
-    width: 65%;
+  @include media-breakpoint-only(xs) {
+    width: 150%;
   }
+
   .column {
     width: 14.28%;
     float: left;
@@ -30,6 +29,7 @@
     height: 80%;
     border: 2px solid rgb(195, 35, 35);
     border-radius: 50%;
+    
   }
   .nochip {
     background-color: #eee;
