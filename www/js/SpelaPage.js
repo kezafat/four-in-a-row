@@ -12,8 +12,8 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = 'Hamid';
-    this.tmpName1 = 'Daniel';
+    this.tmpName0 = '';
+    this.tmpName1 = '';
     this.gameMode = false;
     this.board = new Board(this);
     this.playerType0 = true;
@@ -97,7 +97,7 @@ class SpelaPage extends Component {
       this.players.push(new Player(playerName0, 0, this.playerType0));
       this.players.push(new Player(playerName1, 1, this.playerType1));
       this.gameMode = true;
-
+      this.render();
     }
   }
 
