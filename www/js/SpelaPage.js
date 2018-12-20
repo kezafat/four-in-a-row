@@ -18,6 +18,8 @@ class SpelaPage extends Component {
     this.board = new Board(this);
     this.playerType0 = true;
     this.playerType1 = true;
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 5;
+    this.alert = new Alert();
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -99,6 +101,13 @@ class SpelaPage extends Component {
       this.gameMode = true;
       this.render();
     }
+  }
+  checkWin(){
+    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
+      this.baseEl.find('.game-over').show();
+    
+    }
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
   }
 
 }
