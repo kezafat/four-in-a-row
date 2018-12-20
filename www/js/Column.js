@@ -21,6 +21,7 @@ class Column extends Component {
         this.cellsTaken.push(Board.activePlayer);
         Board.activePlayer = !Board.activePlayer;
         this.SpelaPage.render();
+        this.SpelaPage.checkWin();
         break;
       } else if (this.cellsTaken.length === this.cells.length) {
         // No more empty cells in this col
