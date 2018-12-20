@@ -1,71 +1,70 @@
 <section class="gamePage">
   <div class="${this.gameMode ? 'd-none' : 'd-block'}">
-    <section>
-      <div class="row justify-content-center">
-        <div class="col-md-6 align-self-center">
-          <a href="/" class="btn btn-danger  btn-block">Avbryt</a>
-        </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 align-self-center">
+        <a href="/" class="btn btn-danger  btn-block">Avbryt</a>
       </div>
-      <div class="row">
-        <div class="playerInputPage col-lg-6 text-center">
-          <h4 class="mt-5 mb-4 display-4">Ange spelare ett <span>${this.playerType0 ? ' 🤓' : ' 🤖'}</h4>
-          <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
-          <div class="input-group">
-            <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
-              value="${this.tmpName0}">
-            <div class="btn-group btn-group-toggle btn-toggle-0" data-toggle="buttons">
-              <label class="btn btn-danger rounded-0">
-                <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
-              </label>
-              <label class="btn btn-danger rounded-0 ">
-                <input type="radio" name="player-0-type" id="option2" autocomplete="off" value="pc"> Dator
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="playerInputPage col-lg-6 text-center">
-          <h4 class="mt-5 mb-4 display-4">Ange spelare två <span>${this.playerType1 ? ' 🤓' : ' 🤖'}</span></h4>
-          <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
-          <div class="input-group">
-            <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
-              value="${this.tmpName1}">
-            <div class="btn-group btn-group-toggle btn-toggle-1" data-toggle="buttons">
-              <label class="btn btn-warning rounded-0">
-                <input type="radio" name="player-1-type" id="option1" value="human" checked="checked" aria-pressed="true">Människa
-              </label>
-              <label class="btn btn-warning rounded-0">
-                <input type="radio" name="player-1-type" id="option2" value="pc">Dator
-              </label>
-            </div>
+    </div>
+    <div class="row">
+      <div class="playerInputPage col-lg-6 text-center">
+        <h4 class="mt-5 mb-4 display-4">Ange spelare ett <span>${this.playerType0 ? ' 🤓' : ' 🤖'}</h4>
+        <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
+        <div class="input-group">
+          <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
+            value="${this.tmpName0}">
+          <div class="btn-group btn-group-toggle btn-toggle-0" data-toggle="buttons">
+            <label class="btn btn-danger rounded-0">
+              <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
+            </label>
+            <label class="btn btn-danger rounded-0 ">
+              <input type="radio" name="player-0-type" id="option2" autocomplete="off" value="pc"> Dator
+            </label>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <a href="#" class="btn btn-success btn-lg float-right mt-5 start-btn" role="button">Starta spelet</a>
+      <div class="playerInputPage col-lg-6 text-center">
+        <h4 class="mt-5 mb-4 display-4">Ange spelare två <span>${this.playerType1 ? ' 🤓' : ' 🤖'}</span></h4>
+        <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
+        <div class="input-group">
+          <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
+            value="${this.tmpName1}">
+          <div class="btn-group btn-group-toggle btn-toggle-1" data-toggle="buttons">
+            <label class="btn btn-warning rounded-0">
+              <input type="radio" name="player-1-type" id="option1" value="human" checked="checked" aria-pressed="true">Människa
+            </label>
+            <label class="btn btn-warning rounded-0">
+              <input type="radio" name="player-1-type" id="option2" value="pc">Dator
+            </label>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="#" class="btn btn-success btn-lg float-right mt-5 start-btn" role="button">Starta spelet</a>
+      </div>
+    </div>
   </div>
   <div class="${this.gameMode ? 'd-block' : 'd-none'}">
-    <section>
-      <div class="row mb-3">
-        <div class="col-4 float-left text-center">
-          <h2 class="${!Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName0}
-          </h2>
-        </div>
-        <div class="col-4 float-center ">
-          <div class="row">
-            <button class="btn btn-danger btn-lg active abort-game col-12" role="button" aria-pressed="true">Avbryt</button>
-          </div>
-        </div>
-        <div class="col-4 offset-12 float-right text-center">
-          <h2 class="${Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName1}</h2>
+    <div class="row mb-3">
+      <div class="col-4 float-left text-center">
+        <h2 class="${!Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName0}
+        </h2>
+      </div>
+      <div class="col-4 float-center ">
+        <div class="row">
+          <button class="btn btn-danger btn-lg active abort-game col-12" role="button" aria-pressed="true">Avbryt</button>
         </div>
       </div>
-      <div>
-        ${this.board}
+      <div class="col-4 offset-12 float-right text-center">
+        <h2 class="${Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName1}</h2>
       </div>
-    </section>
+    </div>
+    <div>
+      ${this.board}
+    </div>
+  </div>
+  <div class="game-over">
+    ${this.alert}
   </div>
 </section>
