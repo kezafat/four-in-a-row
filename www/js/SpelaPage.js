@@ -20,6 +20,8 @@ class SpelaPage extends Component {
     this.playerType1 = true;
     SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 5;
     this.alert = new Alert();
+    this.winner = '';
+    this.winningPoints = 7;
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -102,10 +104,15 @@ class SpelaPage extends Component {
       this.render();
     }
   }
-  checkWin(){
-    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
+
+  checkWin() {
+    if (SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1) {
       this.baseEl.find('.game-over').show();
-    
+      this.winner = this.tmpName1 + " " + this.winningPoints;
+      let highscores = [{ name: this.winner }];
+      JSON._save('highscore.json', highscores).then(function () {
+        console.log('Saved!');
+      });
     }
     SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
   }
