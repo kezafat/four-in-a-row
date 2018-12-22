@@ -52,13 +52,13 @@
     <button class="btn btn-secondary active abort-game mb-2" role="button">Avbryt</button>
     <div class="row text-center">
       <div class="col-2 d-flex flex-column justify-content-center">
-        <p class="d-inline playername ${!Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName0}</p>
+        <p class="d-inline playername ${!Board.activePlayer ? 'shown' : 'hidden'} player0">${this.tmpName0}</p>
       </div>
       <div class="col-8 board-box">
         ${this.board}
       </div>
       <div class="col-2 d-flex flex-column justify-content-center">
-        <p class="playername ${Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName1}</p>
+        <p class="playername ${Board.activePlayer ? 'shown' : 'hidden'} player1">${this.tmpName1}</p>
       </div>
     </div>
   </section>
