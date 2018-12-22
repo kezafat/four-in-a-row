@@ -57,18 +57,26 @@ class SpelaPage extends Component {
       this.render();
     }
 
+    function verticalString(str) {
+      let newstr = "<br>";
+      for (var i = 0; i < str.length; i++) {
+        newstr += str.charAt(i) + "<br>";
+      }
+      return newstr;
+    }
+
     if (validated0 && validated1) {
       if (this.playerType0 === "human") {
-        this.tmpName0 = "🤓 " + this.tmpName0;
+        this.tmpName0 = "🤓" + verticalString(this.tmpName0);
       }
       else {
-        this.tmpName0 = "🤖 " + this.tmpName0;
+        this.tmpName0 = "🤖" + verticalString(this.tmpName0);
       }
       if (this.playerType1 === "human") {
-        this.tmpName1 += " 🤓";
+        this.tmpName1 = "🤓" + verticalString(this.tmpName1);
       }
       else {
-        this.tmpName1 += " 🤖";
+        this.tmpName1 = "🤖" + verticalString(this.tmpName1);
       }
       this.players.push(new Player(playerName0, 0, this.playerType0));
       this.players.push(new Player(playerName1, 1, this.playerType1));

@@ -1,21 +1,61 @@
-.gamePage{
-  background: #ffdf79;
-  box-shadow: 0 1px 2px #222;
-  border-radius: 5px;
+.gamePage {
+  background: none !important;
+  box-shadow: none !important;
   @keyframes fadeOut {
-    0%   {opacity: 1}
-    100% {opacity: 0;}
+    0% {
+      opacity: 1
+    }
+    100% {
+      opacity: 0;
+    }
   }
   @keyframes fadeIn {
-    0%   {opacity: 0}
-    100% {opacity: 1;}
+    0% {
+      opacity: 0
+    }
+    100% {
+      opacity: 1;
+    }
   }
-  .hidden{
+  .hidden {
     animation: 0.5s ease-out 0s 1 fadeOut;
     opacity: 0;
   }
-  .shown{
+  .shown {
     animation: 0.5 ease-in 0s 1 fadeIn;
     opacity: 1;
+  }
+  .playername {
+    text-transform: capitalize;
+    font-weight: bold;
+    line-height: 1.1;
+    @include media-breakpoint-up(sm) {
+      font-size: 1.7rem;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 2.7rem;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 4rem;
+    }
+  }
+  .input-group {
+    border-radius: 5px;
+  }
+  .zero-radius {
+    border-radius: 0;
+  }
+  .board-box {
+    background: #01d3ff4a;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0px 15px #c9f0ff;
+  }
+  .drop-shadow {
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #333;
+  }
+  input {
+    background: #e3f7fe87;
   }
 }

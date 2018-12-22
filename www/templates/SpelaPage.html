@@ -4,19 +4,15 @@
       <div>
         <div class="row">
           <div class="col-12">
-            <a href="/" class="btn btn-danger btn-block">Avbryt</a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
             <p class="mt-5 display-4">Ange spelare ett</p>
             <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
-            <div class="input-group">
-              <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
-                value="${this.tmpName0}">
+            <div class="input-group drop-shadow">
+              <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn"
+                aria-describedby="button-addon4" value="${this.tmpName0}">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-danger active">
-                  <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
+                <label class="btn btn-danger active zero-radius">
+                  <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked"
+                    aria-pressed="true">Människa
                 </label>
                 <label class="btn btn-danger">
                   <input type="radio" name="player-0-type" id="option2" autocomplete="off" value="pc"> Dator
@@ -29,12 +25,13 @@
           <div class="col-12">
             <p class="mt-5 display-4">Ange spelare två</p>
             <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
-            <div class="input-group">
-              <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
-                value="${this.tmpName1}">
+            <div class="input-group drop-shadow">
+              <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn"
+                aria-describedby="button-addon4" value="${this.tmpName1}">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-warning active">
-                  <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked" aria-pressed="true">Människa
+                <label class="btn btn-warning active zero-radius">
+                  <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked"
+                    aria-pressed="true">Människa
                 </label>
                 <label class="btn btn-warning">
                   <input type="radio" name="player-1-type" id="option2" autocomplete="off" value="pc"> Dator
@@ -44,35 +41,27 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
-            <a href="#" class="btn btn-success btn-lg float-right mt-5 start-btn" role="button">Starta spelet</a>
+          <div class="col-12 mt-3">
+            <a href="/" class="btn btn-danger float-left drop-shadow">Avbryt</a>
+            <a href="#" class="btn btn-success float-right drop-shadow start-btn" role="button">Starta spelet</a>
           </div>
         </div>
     </section>
+  </div>
+  <section class="${this.gameMode ? 'd-block' : 'd-none'} noBg text-center">
+    <button class="btn btn-secondary active abort-game mb-2" role="button">Avbryt</button>
+    <div class="row text-center">
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <p class="d-inline playername ${!Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName0}</p>
+      </div>
+      <div class="col-8 board-box">
+        ${this.board}
+      </div>
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <p class="playername ${Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName1}</p>
+      </div>
     </div>
-    <div class="${this.gameMode ? 'd-block' : 'd-none'}">
-      <section>
-        <div class="row">
-          <div class="col-12">
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-4 float-left text-center">
-            <h2 class="${!Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName0}
-            </h2>
-          </div>
-          <div class="col-4 float-center ">
-            <div class="row">
-              <button class="btn btn-danger btn-lg active abort-game col-12" role="button" aria-pressed="true">Avbryt</button>
-            </div>
-          </div>
-          <div class="col-4 offset-12 float-right text-center">
-            <h2 class="${Board.activePlayer ? 'shown' : 'hidden'}">${this.tmpName1}</h2>
-          </div>
-        </div>
-        <div class="col-xl-8 col-lg-9 col-md-10 col-sm-10 float-center mx-auto">
-          ${this.board}
-        </div>
-      </section>
-    </div>
+  </section>
+
+
 </section>
