@@ -25,10 +25,12 @@ class SpelaPage extends Component {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
     if (this.playerType0 == "human") {
       this.playerType = true;
+      this.tmpName0 = $('.player-0-name').val();
       this.render()
     }
     else {
       this.playerType0 = false;
+      this.tmpName0 = $('.player-0-name').val();
       this.render();
     }
 
@@ -37,10 +39,12 @@ class SpelaPage extends Component {
     this.playerType1 = $('input[name=player-1-type]:checked').val();
     if (this.playerType1 == "human") {
       this.playerType1 = true;
+      this.tmpName1 = $('.player-1-name').val();
       this.render();
     }
     else {
       this.playerType1 = false;
+      this.tmpName1 = $('.player-1-name').val();
       this.render();
     }
 
@@ -102,10 +106,10 @@ class SpelaPage extends Component {
       this.render();
     }
   }
-  checkWin(){
-    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
+  checkWin() {
+    if (SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1) {
       this.baseEl.find('.game-over').show();
-    
+
     }
     SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
   }
