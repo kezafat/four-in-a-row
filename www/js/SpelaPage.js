@@ -16,40 +16,20 @@ class SpelaPage extends Component {
     this.tmpName1 = 'Daniel';
     this.gameMode = false;
     this.board = new Board(this);
-    this.playerType0 = true;
-    this.playerType1 = true;
+    this.playerType0 = 'human';
+    this.playerType1 = 'human';
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
-    if (this.playerType0 == "human") {
-      this.playerType0 = true;
-      this.tmpName0 = $('.player-0-name').val();
-      this.tmpName1 = $('.player-1-name').val();
-      this.render()
-    }
-    else if (this.playerType0 === "pc") {
-      this.playerType0 = false;
-      this.tmpName0 = $('.player-0-name').val();
-      this.tmpName1 = $('.player-1-name').val();
-      this.render();
-    }
-
+    this.tmpName0 = $('.player-0-name').val();
+    this.tmpName1 = $('.player-1-name').val();
+    this.render();
   }
   botOrHuman1() {
     this.playerType1 = $('input[name=player-1-type]:checked').val();
-    if (this.playerType1 == "human") {
-      this.playerType1 = true;
-      this.tmpName0 = $('.player-0-name').val();
-      this.tmpName1 = $('.player-1-name').val();
-      this.render();
-    }
-    else if (this.playerType1 === "pc") {
-      this.playerType1 = false;
-      this.tmpName0 = $('.player-0-name').val();
-      this.tmpName1 = $('.player-1-name').val();
-      this.render();
-    }
-
+    this.tmpName0 = $('.player-0-name').val();
+    this.tmpName1 = $('.player-1-name').val();
+    this.render();
   }
   updatePlayerPage() {
     this.gameMode = false;
@@ -98,13 +78,13 @@ class SpelaPage extends Component {
     }
 
     if (validated0 && validated1) {
-      if (this.playerType0 == true) {
+      if (this.playerType0 == 'human') {
         this.tmpName0 = "🤓" + verticalString(this.tmpName0);
       }
       else {
         this.tmpName0 = "🤖" + verticalString(this.tmpName0);
       }
-      if (this.playerType1 == true) {
+      if (this.playerType1 == 'human') {
         this.tmpName1 = "🤓" + verticalString(this.tmpName1);
       }
       else {

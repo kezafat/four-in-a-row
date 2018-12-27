@@ -4,7 +4,7 @@
       <div>
         <div class="row">
           <div class="col-12">
-            <p class="mt-5 display-4">Ange spelare ett <span>${this.playerType0 ? ' 🤓' : ' 🤖'}</span></p>
+            <p class="mt-5 display-4">Ange spelare ett <span>${this.playerType0 === 'human' ? ' 🤓' : ' 🤖'}</span></p>
             <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
             <div class="input-group drop-shadow">
               <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
@@ -22,7 +22,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <p class="mt-5 display-4">Ange spelare två <span>${this.playerType1 ? ' 🤓' : ' 🤖'}</span></p>
+            <p class="mt-5 display-4">Ange spelare två <span>${this.playerType1 === 'human' ? ' 🤓' : ' 🤖'}</span></p>
             <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
             <div class="input-group drop-shadow">
               <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn" aria-describedby="button-addon4"
