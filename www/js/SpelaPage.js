@@ -108,9 +108,8 @@ class SpelaPage extends Component {
   checkWin() {
     if (SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1) {
       this.baseEl.find('.game-over').show();
-      this.winner = this.tmpName1 + " " + this.winningPoints;
-      let highscores = [{ name: this.winner }];
-      JSON._save('highscore.json', highscores).then(function () {
+      this.winner = this.players[0];
+      JSON._save('highscore.json', this.winner).then(function () {
         console.log('Saved!');
       });
     }
