@@ -1,9 +1,10 @@
 .board-border:after {
-  content: " ";
+  // content: " ";
   padding-bottom: 100%;
   display: block;
   border: #000;
 }
+
 .board-border {
   .column {
     width: calc(100%/7);
@@ -12,8 +13,6 @@
   .cell {
     width: 100%;
     padding-top: 100%;
-    background-image: url("/img/1.jpg");
-    box-shadow: 0 0 10px #000;
     position: relative;
   }
   .cell>div {
@@ -22,9 +21,9 @@
     left: 6%;
     width: 84%;
     height: 84%;
-    border: 2px solid rgb(195, 35, 35);
+    border: 1px solid #d1f3ff;
+    box-shadow: 0 0 10px #01d3ff;
     border-radius: 50%;
-    
   }
   .nochip {
     background-color: #eee;
