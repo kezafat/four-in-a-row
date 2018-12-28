@@ -12,12 +12,14 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = 'Hamid';
-    this.tmpName1 = 'Daniel';
+    this.tmpName0 = '';
+    this.tmpName1 = '';
     this.gameMode = false;
     this.board = new Board(this);
     this.playerType0 = 'human';
     this.playerType1 = 'human';
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 5;
+    this.alert = new Alert();
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -95,6 +97,13 @@ class SpelaPage extends Component {
       this.gameMode = true;
       this.render();
     }
+  }
+  checkWin(){
+    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
+      this.baseEl.find('.game-over').show();
+    
+    }
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
   }
 
 }
