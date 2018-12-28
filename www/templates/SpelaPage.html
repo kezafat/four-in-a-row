@@ -4,12 +4,12 @@
       <div>
         <div class="row">
           <div class="col-12">
-            <p class="mt-5 display-4">Ange spelare ett</p>
+            <p class="mt-5 display-4">Ange spelare ett <span>${this.playerType0 === 'human' ? ' 🤓' : ' 🤖'}</span></p>
             <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
             <div class="input-group drop-shadow">
               <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn"
                 aria-describedby="button-addon4" value="${this.tmpName0}">
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <div class="btn-group btn-group-toggle btn-toggle-0" data-toggle="buttons">
                 <label class="btn btn-danger active zero-radius">
                   <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked"
                     aria-pressed="true">Människa
@@ -23,12 +23,12 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <p class="mt-5 display-4">Ange spelare två</p>
+            <p class="mt-5 display-4">Ange spelare två <span>${this.playerType1 === 'human' ? ' 🤓' : ' 🤖'}</span></p>
             <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
             <div class="input-group drop-shadow">
               <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn"
                 aria-describedby="button-addon4" value="${this.tmpName1}">
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <div class="btn-group btn-group-toggle btn-toggle-1" data-toggle="buttons">
                 <label class="btn btn-warning active zero-radius">
                   <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked"
                     aria-pressed="true">Människa
