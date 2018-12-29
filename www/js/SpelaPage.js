@@ -21,7 +21,7 @@ class SpelaPage extends Component {
     SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 2;
     this.alert = new Alert();
     this.winner = '';
-    this.score = 0;
+    this.score = 0; //variable for the score
     
   }
   botOrHuman0() {
@@ -96,7 +96,7 @@ class SpelaPage extends Component {
         this.tmpName1 = "🤖" + verticalString(this.tmpName1);
       }
       this.players.push(new Player(playerName0, 0, this.playerType0, this.score));
-      this.players.push(new Player(playerName1, 1, this.playerType1, this.score));
+      this.players.push(new Player(playerName1, 1, this.playerType1, this.score)); // added this score so it pushes score to the player class
       this.gameMode = true;
       this.render();
     }
