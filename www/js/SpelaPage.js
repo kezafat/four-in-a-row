@@ -12,14 +12,17 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = '';
-    this.tmpName1 = '';
+    this.tmpName0 = 'HEj';
+    this.tmpName1 = 'håå';
     this.gameMode = false;
     this.board = new Board(this);
     this.playerType0 = 'human';
     this.playerType1 = 'human';
-    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 5;
+    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 2;
     this.alert = new Alert();
+    this.winner = '';
+    this.score = 0;
+    
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -92,16 +95,21 @@ class SpelaPage extends Component {
       else {
         this.tmpName1 = "🤖" + verticalString(this.tmpName1);
       }
-      this.players.push(new Player(playerName0, 0, this.playerType0));
-      this.players.push(new Player(playerName1, 1, this.playerType1));
+      this.players.push(new Player(playerName0, 0, this.playerType0, this.score));
+      this.players.push(new Player(playerName1, 1, this.playerType1, this.score));
       this.gameMode = true;
       this.render();
     }
   }
-  checkWin(){
-    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
+  checkWin() {
+    if (SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1) {
       this.baseEl.find('.game-over').show();
-    
+      this.winner = this.players[0];
+      if(this.winner == this.players[0] || this.winner == this.players[1]){ //Change this to the actual winchecker
+      JSON._save('highscore.json', this.winner).then(function () {
+        console.log('Saved!');
+      });
+      }
     }
     SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
   }
