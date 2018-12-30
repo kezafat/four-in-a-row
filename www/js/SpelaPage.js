@@ -21,6 +21,9 @@ class SpelaPage extends Component {
     this.player0points = this.player0points || 0;
     this.player1points = this.player1points || 0;
     this.chipCount = this.chipCount || 0;
+    this.vertical = [];
+    this.horizontal = [];
+    this.diagonal = [];
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -106,23 +109,18 @@ class SpelaPage extends Component {
   }
 
 
-  checkWin(Col, Cell) {
-    let colStart = 0;
-    let colEnd = 6;
-    let cellStart = 5;
-    let cellEnd = 0;
-    let colNum = Col.cNum;
-    let cellNum = Cell.cellNum;
-    let cellTakenBy = Cell.cellTakenBy;
-    // console.log(Col, Cell);
-    // console.log(this.board.columns);
-    getAdjacentCells(this.board);
+  checkWin(Cell) {
 
     function getAdjacentCells(Board) {
-      let cellUp, cellDown, cellSVal, colEval, colWval, cellNWval, cellNEval, cellSWval, cellSEval;
-      let chipS, chipW, chipNW, chipSW, chipE, chipNE, chipSE;
+      let colStart = 0;
+      let colEnd = 6;
+      let cellStart = 5;
+      let cellEnd = 0;
+      let colNum = Cell.colNum;
+      let cellNum = Cell.cellNum;
+      let cellTakenBy = Cell.cellTakenBy;
+      let cellUp, cellDown, cellSVal, colEval, colWval, cellNWval, cellNEval, cellSWval, cellSEval,chipS, chipW, chipNW, chipSW, chipE, chipNE, chipSE;
 
-      // console.log(Board.columns);
 
       // NORTH
       if (cellNum <= cellStart && cellNum !== cellEnd) {
@@ -148,55 +146,44 @@ class SpelaPage extends Component {
         chipSE = Cell.chipVal(Board.columns[colEval].cells[cellDown]);
       }
 
-
       let coords = {
-        cellUp,
-        cellNum,
-        cellDown,
-        colWval,
-        colEval,
-        "THIS CHIP": cellTakenBy,
-
+        "THIS": cellTakenBy,
         "E": chipE,
-        "NE": chipNE,
-        "S": chipS,
-        "W": chipW,
-        "NW": colWval + " - " + cellUp,
-        // "NE": colEval + " - " + cellUp,
-        // "NE" : Cell.chipVal(Board.columns[colEval].cells[cellUp]),
-        // "NW" : Cell.chipVal(Board.columns[colWval].cells[cellUp]),
-      };
-
-      let coords2 = {
-        "THIS" : cellTakenBy,
-        "E" : chipE,
         "SE": chipSE,
-        "S" : chipS,
+        "S": chipS,
         "SW": chipSW,
-        "W" : chipW,
+        "W": chipW,
         "NW": chipNW,
-        "N" : "nochip",
-        "NE" : chipNE,
+        "N": "ABOVE",
+        "NE": chipNE,
       }
 
-      console.table(coords2);
-
+      return coords;
     }
-    return true;
-    // if(this.chipCount < 7){return false;}
-    // console.log(player, "layed the last chip");
+    // console.table(getAdjacentCells(this.board));
 
-    let allcols = this.board.columns;
-    console.table(allcols);
-
-    for (const col of allcols) {
-      let colNum = col;
-      let colLength = col.cellsTaken.length;
-      if (colLength == 0) { continue; }
-      console.log(colNum.cNum, colLength);
+    let win = false;
+    while (!win) {
+      let chips = getAdjacentCells(this.board);
+      console.table(chips)
+      if(chips.THIS == chips.S){
+        console.log("S is same!");
+      }
+      break;
     }
-
   }
+
+  // Neråt
+  // Efter lagd chip, skicka in cell till wincheck
+  // Plocka ut colnum och celnum
+  // Lagra kopia av värdet
+  // Kolla värdet under och jämför mot kopia
+  // Fortsätt till det inte finns mer
+  // Om inte samma, vänd riktning och börja räkna
+
+  // Sida
+  
+
 }
 
 

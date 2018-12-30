@@ -9,12 +9,12 @@ class Cell extends Component {
     this.cellTakenBy = cellTakenBy;
   }
 
-  chipVal(Cell){
-    try{
+  chipVal(Cell) {
+    try {
       return Cell.cellTakenBy;
     } catch{
       return "nocell";
     }
-    
+
   }
 }
