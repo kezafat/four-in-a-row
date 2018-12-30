@@ -12,14 +12,15 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = '';
-    this.tmpName1 = '';
-    this.gameMode = false;
+    this.tmpName0 = 'Ettan';
+    this.tmpName1 = 'Tvåan';
+    this.gameMode = true;
     this.board = new Board(this);
     this.playerType0 = 'human';
     this.playerType1 = 'human';
-    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment = 5;
-    this.alert = new Alert();
+    this.player0points = this.player0points || 0;
+    this.player1points = this.player1points || 0;
+    this.chipCount = this.chipCount || 0;
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -39,6 +40,9 @@ class SpelaPage extends Component {
     this.players = [];
     this.tmpName0 = '';
     this.tmpName1 = '';
+    this.chipCount = 0;
+    this.player0points = 0;
+    this.player1points = 0;
     this.board = new Board(this);
     this.render();
   }
@@ -80,6 +84,8 @@ class SpelaPage extends Component {
     }
 
     if (validated0 && validated1) {
+      this.origName0 = this.tmpName0;
+      this.origName1 = this.tmpName1;
       if (this.playerType0 == 'human') {
         this.tmpName0 = "🤓" + verticalString(this.tmpName0);
       }
@@ -98,14 +104,99 @@ class SpelaPage extends Component {
       this.render();
     }
   }
-  checkWin(){
-    if(SpelaPage.doNotKeepOnlyWhileTestingInDevelopment < 1){
-      this.baseEl.find('.game-over').show();
-    
-    }
-    SpelaPage.doNotKeepOnlyWhileTestingInDevelopment--
-  }
 
+
+  checkWin(Col, Cell) {
+    let colStart = 0;
+    let colEnd = 6;
+    let cellStart = 5;
+    let cellEnd = 0;
+    let colNum = Col.cNum;
+    let cellNum = Cell.cellNum;
+    let cellTakenBy = Cell.cellTakenBy;
+    // console.log(Col, Cell);
+    // console.log(this.board.columns);
+    getAdjacentCells(this.board);
+
+    function getAdjacentCells(Board) {
+      let cellUp, cellDown, cellSVal, colEval, colWval, cellNWval, cellNEval, cellSWval, cellSEval;
+      let chipS, chipW, chipNW, chipSW, chipE, chipNE, chipSE;
+
+      // console.log(Board.columns);
+
+      // NORTH
+      if (cellNum <= cellStart && cellNum !== cellEnd) {
+        cellUp = cellNum - 1;
+      }
+      // SOUTH
+      if (cellNum >= cellEnd && cellNum !== cellStart) {
+        cellDown = cellNum + 1;
+        chipS = Cell.chipVal(Board.columns[colNum].cells[cellDown]);
+      }
+      // WEST
+      if (colNum <= colEnd && colNum !== colStart) {
+        colWval = colNum - 1;
+        chipW = Cell.chipVal(Board.columns[colWval].cells[cellNum]);
+        chipNW = Cell.chipVal(Board.columns[colWval].cells[cellUp]);
+        chipSW = Cell.chipVal(Board.columns[colWval].cells[cellDown]);
+      }
+      // EAST
+      if (colNum >= colStart && colNum !== colEnd) {
+        colEval = colNum + 1;
+        chipE = Cell.chipVal(Board.columns[colEval].cells[cellNum]);
+        chipNE = Cell.chipVal(Board.columns[colEval].cells[cellUp]);
+        chipSE = Cell.chipVal(Board.columns[colEval].cells[cellDown]);
+      }
+
+
+      let coords = {
+        cellUp,
+        cellNum,
+        cellDown,
+        colWval,
+        colEval,
+        "THIS CHIP": cellTakenBy,
+
+        "E": chipE,
+        "NE": chipNE,
+        "S": chipS,
+        "W": chipW,
+        "NW": colWval + " - " + cellUp,
+        // "NE": colEval + " - " + cellUp,
+        // "NE" : Cell.chipVal(Board.columns[colEval].cells[cellUp]),
+        // "NW" : Cell.chipVal(Board.columns[colWval].cells[cellUp]),
+      };
+
+      let coords2 = {
+        "THIS" : cellTakenBy,
+        "E" : chipE,
+        "SE": chipSE,
+        "S" : chipS,
+        "SW": chipSW,
+        "W" : chipW,
+        "NW": chipNW,
+        "N" : "nochip",
+        "NE" : chipNE,
+      }
+
+      console.table(coords2);
+
+    }
+    return true;
+    // if(this.chipCount < 7){return false;}
+    // console.log(player, "layed the last chip");
+
+    let allcols = this.board.columns;
+    console.table(allcols);
+
+    for (const col of allcols) {
+      let colNum = col;
+      let colLength = col.cellsTaken.length;
+      if (colLength == 0) { continue; }
+      console.log(colNum.cNum, colLength);
+    }
+
+  }
 }
 
 

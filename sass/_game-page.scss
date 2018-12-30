@@ -64,4 +64,10 @@
   .player1 {
     color: #ffc107;
   }
+  .fixy {
+    position: absolute;
+    z-index: 300;
+    top: 8px;
+    left: 6px;
+  }
 }

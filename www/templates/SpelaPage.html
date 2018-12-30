@@ -49,7 +49,18 @@
     </section>
   </div>
   <section class="${this.gameMode ? 'd-block' : 'd-none'} noBg text-center">
-    <button class="btn btn-secondary active abort-game mb-2" role="button">Avbryt</button>
+    <div class="row text-center">
+      <div class="col-2">
+        <p>${this.origName0}s poäng: ${this.player0points}</p>
+      </div>
+      <div class="col-8 d-flex flex-column">
+        <p>Drag kvar: ${42 - this.chipCount}</p>
+        <button class="btn btn-danger active abort-game mb-2" role="button">Avbryt</button>
+      </div>
+      <div class="col-2">
+        <p>${this.origName1}s poäng: ${this.player1points}</p>
+      </div>
+    </div>
     <div class="row text-center">
       <div class="col-2 d-flex flex-column justify-content-center">
         <p class="d-inline playername ${!Board.activePlayer ? 'shown' : 'hidden'} player0">${this.tmpName0}</p>
