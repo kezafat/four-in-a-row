@@ -21,6 +21,7 @@ class Column extends Component {
         let playerPoints = "player" + Number(Board.activePlayer) + "points";
         this.SpelaPage[playerPoints]++;
         this.SpelaPage.chipCount++;
+        
         if (!this.SpelaPage.checkWin(cellData)) {
           Board.activePlayer = !Board.activePlayer;
           this.SpelaPage.render();

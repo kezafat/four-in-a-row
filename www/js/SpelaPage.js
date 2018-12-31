@@ -14,7 +14,7 @@ class SpelaPage extends Component {
     this.validate1 = true;
     this.tmpName0 = 'Rödingen';
     this.tmpName1 = 'Gulingen';
-    this.gameMode = false;
+    this.gameMode = true;
     this.winnerName;
     this.winnerPoints;
     this.showWinner = false;
@@ -28,6 +28,7 @@ class SpelaPage extends Component {
     this.vertical = [];
     this.horizontal = [];
     this.diagonal = [];
+    this.winning = [];
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -198,25 +199,22 @@ class SpelaPage extends Component {
   }
 
   checkWin(Cell) {
-    // No check needed
+    // No check needed at all when less than 7 chips are placed
     if (this.chipCount < 7) {
-      // return false;
+      return false;
     }
-
 
     // VERTICAL CHECK
     function verticalCheck() {
       if (this.board.columns[Cell.colNum].cellsTaken.length < 4) {
-        // No need to check for less than 4 chips in vertical
+        // No need to check for less than 4 chips in column
       } else {
-
         let cell1 = Cell;
         let cell1Data = this.getCellAdress(Cell);
         let cell2 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 1];
         let cell3 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 2];
         let cell4 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 3];
         let cells = [cell1, cell2, cell3, cell4];
-
         let thisChipVal = cell1.cellTakenBy;
 
         for (const cell of cells) {
@@ -234,14 +232,56 @@ class SpelaPage extends Component {
         }
       }
     }
+    // eof verticalCheck
 
-    if (verticalCheck.call(this)) {
-      this.showWinningChips(this.vertical);
-      // Also tell column that game is over
+    function horizontalCheck() {
+      let thisChipVal = Cell.cellTakenBy;
+      let colKeys = [];
+
+      // Push all cols that match with last cell
+      for (let i = 0; i < 7; i++) {
+        let cells = this.board.columns[i].cells[Cell.cellNum];
+        if (thisChipVal == cells.cellTakenBy) {
+          colKeys.push(i);
+        }
+      }
+
+      // Start with leftest one and push the colNums if they are adjacent
+      let firstKey = colKeys[0];
+      let subtractor = 1;
+      let truth = [firstKey];
+      for (let i = 1; i < colKeys.length; i++) {
+        if (firstKey == (colKeys[i] - subtractor)) {
+          truth.push(colKeys[i]);
+          subtractor++;
+        }
+      }
+
+      // Convert colNums back to Cell objects if 4 or more
+      if (truth.length >= 4) {
+        for (const cols of truth) {
+          this.horizontal.push(this.board.columns[cols].cells[Cell.cellNum])
+        }
+        this.showWinningChips(this.horizontal);
+        return true;
+      } else {
+        this.horizontal = [];
+      }
+    }
+    // eof horizontalCheck
+
+
+    if (horizontalCheck.call(this)) {
+      this.showWinningChips(this.horizontal);
       return true;
     }
 
-    if(this.chipCount == 42){
+    if (verticalCheck.call(this)) {
+      this.showWinningChips(this.vertical);
+      return true;
+    }
+
+    if (this.chipCount == 42) {
       this.showTie = true;
       this.render()
     }
@@ -253,7 +293,7 @@ class SpelaPage extends Component {
     let winner = chip.replace("chip", "tmpName");
     let winnerPoints = chip.replace("chip", "player") + "points";
     let winnerName = this[winner];
-    // Remove semantics from name
+    // Remove html from name string
     winnerName = winnerName.replace(/<\/?[^>]+(>|$)/g, "");
 
     for (const chip of chips) {
