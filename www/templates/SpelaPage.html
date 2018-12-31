@@ -49,6 +49,39 @@
     </section>
   </div>
   <section class="${this.gameMode ? 'd-block' : 'd-none'} noBg text-center">
+
+
+    <div class="winBox ${this.showWinner ? 'd-block' : 'd-none'}">
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <div class="jumbotron p-1">
+              <p>GRATTIS, ${this.winnerName}!</p>
+              <p>Du vann med endast ${this.winnerPoints} drag.</p>
+              <hr class="my-4">
+              <button class="btn btn-primary abort-game">Spela igen</button>
+              <a class="btn btn-success" href="/topplista">Se topplistan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="winBox ${this.showTie ? 'd-block' : 'd-none'}">
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <div class="jumbotron p-1">
+              <p>Näääää, det blev oavgjort :(</p>
+              <hr class="my-4">
+              <button class="btn btn-primary abort-game">Spela igen</button>
+              <a class="btn btn-success" href="/topplista">Se topplistan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row text-center">
       <div class="col-2">
         <p>${this.origName0}s drag: ${this.player0points}</p>
@@ -73,6 +106,7 @@
       </div>
     </div>
   </section>
+
 
 
   <div class="game-over">

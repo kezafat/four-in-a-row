@@ -4,7 +4,7 @@ class SpelaPage extends Component {
     this.addRoute('/spela', 'Spela');
     this.addEvents({
       'click .start-btn': 'checkName',
-      'click .abort-game': 'updatePlayerPage',
+      'click .abort-game': 'resetBoard',
       'click .btn-toggle-0': 'botOrHuman0',
       'click .btn-toggle-1': 'botOrHuman1'
     });
@@ -12,9 +12,13 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = 'Ettan';
-    this.tmpName1 = 'Tvåan';
-    this.gameMode = true;
+    this.tmpName0 = 'Rödingen';
+    this.tmpName1 = 'Gulingen';
+    this.gameMode = false;
+    this.winnerName;
+    this.winnerPoints;
+    this.showWinner = false;
+    this.showTie = false;
     this.board = new Board(this);
     this.playerType0 = 'human';
     this.playerType1 = 'human';
@@ -37,12 +41,18 @@ class SpelaPage extends Component {
     this.tmpName1 = $('.player-1-name').val();
     this.render();
   }
-  updatePlayerPage() {
+  resetBoard() {
     this.gameMode = false;
-    // ALSO empty array of players when game is aborted.
+    this.showWinner = false;
+    this.showTie = false;
+    this.winnerName = "";
+    this.winnerPoints = 0;
+    this.vertical = [];
+    this.horizontal = [];
+    this.diagonal = [];
     this.players = [];
-    this.tmpName0 = '';
-    this.tmpName1 = '';
+    this.tmpName0 = 'RÖD';
+    this.tmpName1 = 'GUL';
     this.chipCount = 0;
     this.player0points = 0;
     this.player1points = 0;
@@ -108,81 +118,153 @@ class SpelaPage extends Component {
     }
   }
 
-
-  checkWin(Cell) {
-
-    function getAdjacentCells(Board) {
-      let colStart = 0;
-      let colEnd = 6;
-      let cellStart = 5;
-      let cellEnd = 0;
-      let colNum = Cell.colNum;
-      let cellNum = Cell.cellNum;
-      let cellTakenBy = Cell.cellTakenBy;
-      let cellUp, cellDown, cellSVal, colEval, colWval, cellNWval, cellNEval, cellSWval, cellSEval,chipS, chipW, chipNW, chipSW, chipE, chipNE, chipSE;
-
-
-      // NORTH
-      if (cellNum <= cellStart && cellNum !== cellEnd) {
-        cellUp = cellNum - 1;
-      }
-      // SOUTH
-      if (cellNum >= cellEnd && cellNum !== cellStart) {
-        cellDown = cellNum + 1;
-        chipS = Cell.chipVal(Board.columns[colNum].cells[cellDown]);
-      }
-      // WEST
-      if (colNum <= colEnd && colNum !== colStart) {
-        colWval = colNum - 1;
-        chipW = Cell.chipVal(Board.columns[colWval].cells[cellNum]);
-        chipNW = Cell.chipVal(Board.columns[colWval].cells[cellUp]);
-        chipSW = Cell.chipVal(Board.columns[colWval].cells[cellDown]);
-      }
-      // EAST
-      if (colNum >= colStart && colNum !== colEnd) {
-        colEval = colNum + 1;
-        chipE = Cell.chipVal(Board.columns[colEval].cells[cellNum]);
-        chipNE = Cell.chipVal(Board.columns[colEval].cells[cellUp]);
-        chipSE = Cell.chipVal(Board.columns[colEval].cells[cellDown]);
-      }
-
+  getCellAdress(Cell) {
+    try {
       let coords = {
-        "THIS": cellTakenBy,
-        "E": chipE,
-        "SE": chipSE,
-        "S": chipS,
-        "SW": chipSW,
-        "W": chipW,
-        "NW": chipNW,
-        "N": "ABOVE",
-        "NE": chipNE,
+        "col": Cell.colNum,
+        "cell": Cell.cellNum,
+        "takenby": Cell.cellTakenBy
       }
-
       return coords;
+    } catch (error) {
+      return "nocell";
     }
-    // console.table(getAdjacentCells(this.board));
 
-    let win = false;
-    while (!win) {
-      let chips = getAdjacentCells(this.board);
-      console.table(chips)
-      if(chips.THIS == chips.S){
-        console.log("S is same!");
-      }
-      break;
-    }
   }
 
-  // Neråt
-  // Efter lagd chip, skicka in cell till wincheck
-  // Plocka ut colnum och celnum
-  // Lagra kopia av värdet
-  // Kolla värdet under och jämför mot kopia
-  // Fortsätt till det inte finns mer
-  // Om inte samma, vänd riktning och börja räkna
+  getAdjacentCells(Cell) {
+    let colNum = Cell.colNum;
+    let cellNum = Cell.cellNum;
+    let Board = this.board;
+    let colStart = 0;
+    let colEnd = 6;
+    let cellStart = 5;
+    let cellEnd = 0;
+    let cellTakenBy = Cell.cellTakenBy;
+    let cellUp, cellDown, cellSVal, colEval, colWval, cellNWval, cellNEval, cellSWval, cellSEval, chipS, chipW, chipNW, chipSW, chipE, chipNE, chipSE;
+    let chipEC, chipSEC, chipSC, chipSWC, chipWC, chipNWC, chipNEC;
 
-  // Sida
-  
+    // NORTH
+    if (cellNum <= cellStart && cellNum !== cellEnd) {
+      cellUp = cellNum - 1;
+    }
+    // SOUTH
+    if (cellNum >= cellEnd && cellNum !== cellStart) {
+      cellDown = cellNum + 1;
+      chipS = Cell.chipVal(Board.columns[colNum].cells[cellDown]);
+      chipSC = this.getCellAdress(Board.columns[colNum].cells[cellDown]);
+    }
+    // WEST
+    if (colNum <= colEnd && colNum !== colStart) {
+      colWval = colNum - 1;
+      chipW = Cell.chipVal(Board.columns[colWval].cells[cellNum]);
+      chipWC = this.getCellAdress(Board.columns[colWval].cells[cellNum]);
+      chipNW = Cell.chipVal(Board.columns[colWval].cells[cellUp]);
+      chipNWC = this.getCellAdress(Board.columns[colWval].cells[cellUp]);
+      chipSW = Cell.chipVal(Board.columns[colWval].cells[cellDown]);
+      chipSWC = this.getCellAdress(Board.columns[colWval].cells[cellDown]);
+    }
+    // EAST
+    if (colNum >= colStart && colNum !== colEnd) {
+      colEval = colNum + 1;
+      chipE = Cell.chipVal(Board.columns[colEval].cells[cellNum]);
+      chipEC = this.getCellAdress(Board.columns[colEval].cells[cellNum]);
+      chipNE = Cell.chipVal(Board.columns[colEval].cells[cellUp]);
+      chipNEC = this.getCellAdress(Board.columns[colEval].cells[cellUp]);
+      chipSE = Cell.chipVal(Board.columns[colEval].cells[cellDown]);
+      chipSEC = this.getCellAdress(Board.columns[colEval].cells[cellDown]);
+    }
+
+    let coords = {
+      // "TC": cellTakenBy,
+      "TC": this.getCellAdress(Cell),
+      // "E": chipE,
+      "E": chipEC,
+      // "SE": chipSE,
+      "SE": chipSEC,
+      // "S": chipS,
+      "S": chipSC,
+      // "SW": chipSW,
+      "SW": chipSWC,
+      // "W": chipW,
+      "W": chipWC,
+      // "NW": chipNW,
+      "NW": chipNWC,
+      // "NE": chipNE,
+      "NE": chipNEC
+    }
+    // console.table(coords);
+    return coords;
+  }
+
+  checkWin(Cell) {
+    // No check needed
+    if (this.chipCount < 7) {
+      // return false;
+    }
+
+
+    // VERTICAL CHECK
+    function verticalCheck() {
+      if (this.board.columns[Cell.colNum].cellsTaken.length < 4) {
+        // No need to check for less than 4 chips in vertical
+      } else {
+
+        let cell1 = Cell;
+        let cell1Data = this.getCellAdress(Cell);
+        let cell2 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 1];
+        let cell3 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 2];
+        let cell4 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 3];
+        let cells = [cell1, cell2, cell3, cell4];
+
+        let thisChipVal = cell1.cellTakenBy;
+
+        for (const cell of cells) {
+          if (cell.cellTakenBy == thisChipVal) {
+            this.vertical.push(cell);
+          } else {
+            this.vertical = [];
+          }
+        }
+
+        if (this.vertical.length == 4) {
+          return true;
+        } else {
+          this.vertical = [];
+        }
+      }
+    }
+
+    if (verticalCheck.call(this)) {
+      this.showWinningChips(this.vertical);
+      // Also tell column that game is over
+      return true;
+    }
+
+    if(this.chipCount == 42){
+      this.showTie = true;
+      this.render()
+    }
+
+  }
+
+  showWinningChips(chips) {
+    let chip = chips[0].cellTakenBy;
+    let winner = chip.replace("chip", "tmpName");
+    let winnerPoints = chip.replace("chip", "player") + "points";
+    let winnerName = this[winner];
+    // Remove semantics from name
+    winnerName = winnerName.replace(/<\/?[^>]+(>|$)/g, "");
+
+    for (const chip of chips) {
+      chip.win = true;
+    }
+
+    this.winnerName = winnerName;
+    this.winnerPoints = this[winnerPoints];
+    this.showWinner = true;
+    this.render()
+  }
 
 }
 

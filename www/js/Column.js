@@ -16,14 +16,18 @@ class Column extends Component {
     for (let i = this.cells.length; i > 0; i--) {
       let cellData = this.cells[i - 1];
       if (cellData.cellTakenBy === "nochip") {
+        this.cellsTaken.push(Board.activePlayer);
         cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
         let playerPoints = "player" + Number(Board.activePlayer) + "points";
-        this.cellsTaken.push(Board.activePlayer);
         this.SpelaPage[playerPoints]++;
         this.SpelaPage.chipCount++;
-        this.SpelaPage.checkWin(cellData);
-        Board.activePlayer = !Board.activePlayer;
-        this.SpelaPage.render();
+        if (!this.SpelaPage.checkWin(cellData)) {
+          Board.activePlayer = !Board.activePlayer;
+          this.SpelaPage.render();
+        } else {
+          // Win is true, so show winning name
+          Board.activePlayer = !Board.activePlayer;
+        }
         break;
       } else if (this.cellsTaken.length === this.cells.length) {
         // No more empty cells in this col

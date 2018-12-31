@@ -70,4 +70,30 @@
     top: 8px;
     left: 6px;
   }
+  @keyframes winningBlinker {
+    from {
+      background-color: #c9f0ff;
+    }
+    to {
+      background-color: none;
+    }
+  }
+  .winChip {
+    animation: winningBlinker 1s infinite;
+  }
+  .winBox {
+    position: fixed;
+    max-height: 200px;
+    top: calc(50vh - 100px);
+    left: calc(50% - 200px);
+    z-index: 2000;
+    padding: 30px;
+    width: 400px;
+    opacity: 0.9;
+    margin: 0 auto;
+    .jumbotron {
+      border: 1px solid black;
+      box-shadow: 0 1px 3px black;
+    }
+  }
 }
