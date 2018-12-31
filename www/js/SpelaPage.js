@@ -12,9 +12,9 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = 'Rödingen';
-    this.tmpName1 = 'Gulingen';
-    this.gameMode = true;
+    this.tmpName0 = 'Röding';
+    this.tmpName1 = 'Guling';
+    this.gameMode = false;
     this.winnerName;
     this.winnerPoints;
     this.showWinner = false;
@@ -130,9 +130,8 @@ class SpelaPage extends Component {
       }
       return coords;
     } catch (error) {
-      return "nocell";
+      return undefined;
     }
-
   }
 
   getAdjacentCells(Cell) {
@@ -154,49 +153,33 @@ class SpelaPage extends Component {
     // SOUTH
     if (cellNum >= cellEnd && cellNum !== cellStart) {
       cellDown = cellNum + 1;
-      chipS = Cell.chipVal(Board.columns[colNum].cells[cellDown]);
       chipSC = this.getCellAdress(Board.columns[colNum].cells[cellDown]);
     }
     // WEST
     if (colNum <= colEnd && colNum !== colStart) {
       colWval = colNum - 1;
-      chipW = Cell.chipVal(Board.columns[colWval].cells[cellNum]);
       chipWC = this.getCellAdress(Board.columns[colWval].cells[cellNum]);
-      chipNW = Cell.chipVal(Board.columns[colWval].cells[cellUp]);
       chipNWC = this.getCellAdress(Board.columns[colWval].cells[cellUp]);
-      chipSW = Cell.chipVal(Board.columns[colWval].cells[cellDown]);
       chipSWC = this.getCellAdress(Board.columns[colWval].cells[cellDown]);
     }
     // EAST
     if (colNum >= colStart && colNum !== colEnd) {
       colEval = colNum + 1;
-      chipE = Cell.chipVal(Board.columns[colEval].cells[cellNum]);
       chipEC = this.getCellAdress(Board.columns[colEval].cells[cellNum]);
-      chipNE = Cell.chipVal(Board.columns[colEval].cells[cellUp]);
       chipNEC = this.getCellAdress(Board.columns[colEval].cells[cellUp]);
-      chipSE = Cell.chipVal(Board.columns[colEval].cells[cellDown]);
       chipSEC = this.getCellAdress(Board.columns[colEval].cells[cellDown]);
     }
 
     let coords = {
-      // "TC": cellTakenBy,
       "TC": this.getCellAdress(Cell),
-      // "E": chipE,
       "E": chipEC,
-      // "SE": chipSE,
       "SE": chipSEC,
-      // "S": chipS,
       "S": chipSC,
-      // "SW": chipSW,
       "SW": chipSWC,
-      // "W": chipW,
       "W": chipWC,
-      // "NW": chipNW,
       "NW": chipNWC,
-      // "NE": chipNE,
       "NE": chipNEC
     }
-    // console.table(coords);
     return coords;
   }
 
@@ -272,6 +255,83 @@ class SpelaPage extends Component {
     }
     // eof horizontalCheck
 
+    function diagonalCheck() {
+      let actualChipAdr = this.getCellAdress(Cell);
+      let takenby = Cell.cellTakenBy;
+      let tmpSW = [];
+      let tmpSE = [];
+
+      // THis pointer will be set to SW
+      let SWdata = this.getAdjacentCells(this.board.columns[Cell.colNum].cells[Cell.cellNum]);
+
+
+      // First, go all the way SW
+      while (SWdata.SW) {
+        SWdata = this.getAdjacentCells(this.board.columns[SWdata.SW.col].cells[SWdata.SW.cell]);
+      }
+      // Then go ALL the way NE
+      tmpSW.push(SWdata.TC);
+      while (SWdata.NE) {
+        tmpSW.push(SWdata.NE)
+        SWdata = this.getAdjacentCells(this.board.columns[SWdata.NE.col].cells[SWdata.NE.cell]);
+      }
+
+
+      let lastSWval = takenby;
+      let SWtmp = [];
+      this.diagonal = [];
+      for (let i = 0; i < tmpSW.length; i++) {
+        if (tmpSW[i].takenby == lastSWval) {
+          SWtmp.push(this.board.columns[tmpSW[i].col].cells[tmpSW[i].cell]);
+          this.diagonal.push(this.board.columns[tmpSW[i].col].cells[tmpSW[i].cell]);
+          lastSWval = tmpSW[i].takenby;
+        } else {
+          SWtmp = [];
+          this.diagonal = [];
+          continue;
+        }
+        if (SWtmp.length >= 4) {
+          return true;
+          break;
+        }
+      }
+      // EOF SW testing
+
+      // Do same for SE
+      let SEdata = this.getAdjacentCells(this.board.columns[Cell.colNum].cells[Cell.cellNum]);
+
+      // First, go all the way SE
+      while (SEdata.SE) {
+        SEdata = this.getAdjacentCells(this.board.columns[SEdata.SE.col].cells[SEdata.SE.cell]);
+      }
+      // Then go ALL the way NW
+      tmpSE.push(SEdata.TC);
+      while (SEdata.NW) {
+        tmpSE.push(SEdata.NW)
+        SEdata = this.getAdjacentCells(this.board.columns[SEdata.NW.col].cells[SEdata.NW.cell]);
+      }
+
+      let lastSEval = takenby;
+      let SEtmp = [];
+      this.diagonal = [];
+      for (let i = 0; i < tmpSE.length; i++) {
+        if (tmpSE[i].takenby == lastSEval) {
+          SEtmp.push(this.board.columns[tmpSE[i].col].cells[tmpSE[i].cell]);
+          this.diagonal.push(this.board.columns[tmpSE[i].col].cells[tmpSE[i].cell]);
+          lastSEval = tmpSE[i].takenby;
+        } else {
+          SEtmp = [];
+          this.diagonal = [];
+          continue;
+        }
+        if (SEtmp.length >= 4) {
+          // console.table(this.diagonal)
+          return true;
+          break;
+        }
+      }
+    }
+    // eof diagonalCheck
 
     if (horizontalCheck.call(this)) {
       this.showWinningChips(this.horizontal);
@@ -283,6 +343,11 @@ class SpelaPage extends Component {
       return true;
     }
 
+    if (diagonalCheck.call(this)) {
+      this.showWinningChips(this.diagonal);
+      return true;
+    }
+
     if (this.chipCount == 42) {
       this.showTie = true;
       this.render()
@@ -291,6 +356,7 @@ class SpelaPage extends Component {
   }
 
   showWinningChips(chips) {
+    // Get chipstring, use it to identify and set playername and scores
     let chip = chips[0].cellTakenBy;
     let winner = chip.replace("chip", "tmpName");
     let winnerPoints = chip.replace("chip", "player") + "points";
@@ -298,6 +364,7 @@ class SpelaPage extends Component {
     // Remove html from name string
     winnerName = winnerName.replace(/<\/?[^>]+(>|$)/g, "");
 
+    // Style winning chips
     for (const chip of chips) {
       chip.win = true;
     }
