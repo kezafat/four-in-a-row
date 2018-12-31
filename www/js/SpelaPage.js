@@ -29,6 +29,7 @@ class SpelaPage extends Component {
     this.horizontal = [];
     this.diagonal = [];
     this.winning = [];
+    this.allowPlay = true;
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -57,6 +58,7 @@ class SpelaPage extends Component {
     this.chipCount = 0;
     this.player0points = 0;
     this.player1points = 0;
+    this.allowPlay = true;
     this.board = new Board(this);
     this.render();
   }
