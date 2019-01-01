@@ -231,26 +231,37 @@ class SpelaPage extends Component {
         }
       }
 
-      // Start with leftest one and push the colNums if they are adjacent
-      let firstKey = colKeys[0];
-      let subtractor = 1;
-      let truth = [firstKey];
-      for (let i = 1; i < colKeys.length; i++) {
-        if (firstKey == (colKeys[i] - subtractor)) {
-          truth.push(colKeys[i]);
-          subtractor++;
-        }
+      let Wdata = this.getAdjacentCells(this.board.columns[Cell.colNum].cells[Cell.cellNum]);
+      let tmpW = [];
+
+      // First, go all the way W
+      while (Wdata.W) {
+        Wdata = this.getAdjacentCells(this.board.columns[Wdata.W.col].cells[Wdata.W.cell]);
+      }
+      // Then go ALL the way E
+      tmpW.push(Wdata.TC);
+      while (Wdata.E) {
+        tmpW.push(Wdata.E)
+        Wdata = this.getAdjacentCells(this.board.columns[Wdata.E.col].cells[Wdata.E.cell]);
       }
 
-      // Convert colNums back to Cell objects if 4 or more
-      if (truth.length >= 4) {
-        for (const cols of truth) {
-          this.horizontal.push(this.board.columns[cols].cells[Cell.cellNum])
+      let lastWval = Cell.cellTakenBy;
+      let Wtmp = [];
+      this.horizontal = [];
+      for (let i = 0; i < tmpW.length; i++) {
+        if (tmpW[i].takenby == lastWval) {
+          Wtmp.push(this.board.columns[tmpW[i].col].cells[tmpW[i].cell]);
+          this.horizontal.push(this.board.columns[tmpW[i].col].cells[tmpW[i].cell]);
+          lastWval = tmpW[i].takenby;
+        } else {
+          Wtmp = [];
+          this.horizontal = [];
+          continue;
         }
-        this.showWinningChips(this.horizontal);
-        return true;
-      } else {
-        this.horizontal = [];
+        if (Wtmp.length >= 4) {
+          return true;
+          break;
+        }
       }
     }
     // eof horizontalCheck
