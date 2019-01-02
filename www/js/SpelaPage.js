@@ -10,6 +10,7 @@ class SpelaPage extends Component {
     });
     this.name = "Spelapage";
     this.players = [];
+    this.savePlayers = [];
     this.validate0 = true;
     this.validate1 = true;
     this.tmpName0 = 'HEj';
