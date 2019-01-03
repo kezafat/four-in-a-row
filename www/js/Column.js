@@ -13,15 +13,24 @@ class Column extends Component {
   }
 
   placeChip() {
+    if(!this.SpelaPage.allowPlay){return;}
     for (let i = this.cells.length; i > 0; i--) {
       let cellData = this.cells[i - 1];
-      let cellStatus = cellData.cellTakenBy;
-      if (cellStatus === "nochip") {
-        cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
+      if (cellData.cellTakenBy === "nochip") {
         this.cellsTaken.push(Board.activePlayer);
-        Board.activePlayer = !Board.activePlayer;
-        this.SpelaPage.render();
-        this.SpelaPage.checkWin();
+        cellData.cellTakenBy = `chip${Number(Board.activePlayer)}`;
+        let playerPoints = "player" + Number(Board.activePlayer) + "points";
+        this.SpelaPage[playerPoints]++;
+        this.SpelaPage.chipCount++;
+
+        if (!this.SpelaPage.checkWin(cellData)) {
+          Board.activePlayer = !Board.activePlayer;
+          this.SpelaPage.render();
+        } else {
+          // Win is true, so show winning name
+          this.SpelaPage.allowPlay = false;
+          Board.activePlayer = !Board.activePlayer;
+        }
         break;
       } else if (this.cellsTaken.length === this.cells.length) {
         // No more empty cells in this col
@@ -31,7 +40,7 @@ class Column extends Component {
   }
 
   makeCells() {
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 0; i <= 5; i++) {
       this.cells.push(new Cell(this.cNum, i));
     }
   }
