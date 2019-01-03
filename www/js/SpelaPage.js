@@ -12,8 +12,8 @@ class SpelaPage extends Component {
     this.players = [];
     this.validate0 = true;
     this.validate1 = true;
-    this.tmpName0 = 'Röding';
-    this.tmpName1 = 'Guling';
+    this.tmpName0 = '';
+    this.tmpName1 = '';
     this.gameMode = false;
     this.winnerName;
     this.winnerPoints;
@@ -25,10 +25,7 @@ class SpelaPage extends Component {
     this.player0points = this.player0points || 0;
     this.player1points = this.player1points || 0;
     this.chipCount = this.chipCount || 0;
-    this.vertical = [];
-    this.horizontal = [];
-    this.diagonal = [];
-    this.winning = [];
+    this.winners = [];
     this.allowPlay = true;
   }
   botOrHuman0() {
@@ -49,9 +46,7 @@ class SpelaPage extends Component {
     this.showTie = false;
     this.winnerName = "";
     this.winnerPoints = 0;
-    this.vertical = [];
-    this.horizontal = [];
-    this.diagonal = [];
+    this.winners = [];
     this.players = [];
     this.tmpName0 = 'RÖD';
     this.tmpName1 = 'GUL';
@@ -142,27 +137,26 @@ class SpelaPage extends Component {
     let colEnd = 6;
     let cellStart = 5;
     let cellEnd = 0;
-    let cellTakenBy = Cell.cellTakenBy;
-    let cellUp, cellDown, cellSVal, colEval, colWval, cellNWval, cellNEval, cellSWval, cellSEval, chipS, chipW, chipNW, chipSW, chipE, chipNE, chipSE;
-    let chipEC, chipSEC, chipSC, chipSWC, chipWC, chipNWC, chipNEC;
+    let cellUp, cellDown, colEval, colWval, chipEC, chipSEC, chipSC, chipSWC, chipWC, chipNWC, chipNC, chipNEC;
 
     // NORTH
     if (cellNum <= cellStart && cellNum !== cellEnd) {
       cellUp = cellNum - 1;
+      chipNC = this.getCellAdress(Board.columns[colNum].cells[cellUp]);
     }
     // SOUTH
     if (cellNum >= cellEnd && cellNum !== cellStart) {
       cellDown = cellNum + 1;
       chipSC = this.getCellAdress(Board.columns[colNum].cells[cellDown]);
     }
-    // WEST
+    // WESTBOUND
     if (colNum <= colEnd && colNum !== colStart) {
       colWval = colNum - 1;
       chipWC = this.getCellAdress(Board.columns[colWval].cells[cellNum]);
       chipNWC = this.getCellAdress(Board.columns[colWval].cells[cellUp]);
       chipSWC = this.getCellAdress(Board.columns[colWval].cells[cellDown]);
     }
-    // EAST
+    // EASTBOUND
     if (colNum >= colStart && colNum !== colEnd) {
       colEval = colNum + 1;
       chipEC = this.getCellAdress(Board.columns[colEval].cells[cellNum]);
@@ -177,6 +171,7 @@ class SpelaPage extends Component {
       "S": chipSC,
       "SW": chipSWC,
       "W": chipWC,
+      "N": chipNC,
       "NW": chipNWC,
       "NE": chipNEC
     }
@@ -184,178 +179,48 @@ class SpelaPage extends Component {
   }
 
   checkWin(Cell) {
-    // No check needed at all when less than 7 chips are placed
-    if (this.chipCount < 7) {
+    let coords = [["S", "N"], ["W", "E"], ["SW", "NE"], ["SE", "NW"]];
+    let winlimit = 4;
+
+    if (this.chipCount < winlimit) {
       return false;
     }
 
-    // VERTICAL CHECK
-    function verticalCheck() {
-      if (this.board.columns[Cell.colNum].cellsTaken.length < 4) {
-        // No need to check for less than 4 chips in column
-      } else {
-        let cell1 = Cell;
-        let cell1Data = this.getCellAdress(Cell);
-        let cell2 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 1];
-        let cell3 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 2];
-        let cell4 = this.board.columns[cell1Data.col].cells[cell1Data.cell + 3];
-        let cells = [cell1, cell2, cell3, cell4];
-        let thisChipVal = cell1.cellTakenBy;
-
-        for (const cell of cells) {
-          if (cell.cellTakenBy == thisChipVal) {
-            this.vertical.push(cell);
-          } else {
-            this.vertical = [];
-          }
-        }
-
-        if (this.vertical.length == 4) {
-          return true;
-        } else {
-          this.vertical = [];
-        }
-      }
-    }
-    // eof verticalCheck
-
-    function horizontalCheck() {
-      let thisChipVal = Cell.cellTakenBy;
-      let colKeys = [];
-
-      // Push all cols that match with last cell
-      for (let i = 0; i < 7; i++) {
-        let cells = this.board.columns[i].cells[Cell.cellNum];
-        if (thisChipVal == cells.cellTakenBy) {
-          colKeys.push(i);
-        }
-      }
-
+    for (const coordsPar of coords) {
       let Wdata = this.getAdjacentCells(this.board.columns[Cell.colNum].cells[Cell.cellNum]);
-      let tmpW = [];
+      let tmpCoords = [];
 
-      // First, go all the way W
-      while (Wdata.W) {
-        Wdata = this.getAdjacentCells(this.board.columns[Wdata.W.col].cells[Wdata.W.cell]);
+      // First, go all the way to first coord
+      while (Wdata[coordsPar[0]]) {
+        Wdata = this.getAdjacentCells(this.board.columns[Wdata[coordsPar[0]].col].cells[Wdata[coordsPar[0]].cell]);
       }
-      // Then go ALL the way E
-      tmpW.push(Wdata.TC);
-      while (Wdata.E) {
-        tmpW.push(Wdata.E)
-        Wdata = this.getAdjacentCells(this.board.columns[Wdata.E.col].cells[Wdata.E.cell]);
+      // Then go ALL the way second coord
+      tmpCoords.push(Wdata.TC);
+      while (Wdata[coordsPar[1]]) {
+        tmpCoords.push(Wdata[coordsPar[1]])
+        Wdata = this.getAdjacentCells(this.board.columns[Wdata[coordsPar[1]].col].cells[Wdata[coordsPar[1]].cell]);
       }
 
       let lastWval = Cell.cellTakenBy;
-      let Wtmp = [];
-      this.horizontal = [];
-      for (let i = 0; i < tmpW.length; i++) {
-        if (tmpW[i].takenby == lastWval) {
-          Wtmp.push(this.board.columns[tmpW[i].col].cells[tmpW[i].cell]);
-          this.horizontal.push(this.board.columns[tmpW[i].col].cells[tmpW[i].cell]);
-          lastWval = tmpW[i].takenby;
+      let tmpArr = [];
+      for (let i = 0; i < tmpCoords.length; i++) {
+        if (tmpCoords[i].takenby == lastWval && tmpCoords[i].takenby !== 'undefined') {
+          tmpArr.push(this.board.columns[tmpCoords[i].col].cells[tmpCoords[i].cell]);
+          lastWval = tmpCoords[i].takenby;
         } else {
-          Wtmp = [];
-          this.horizontal = [];
+          tmpArr = [];
           continue;
         }
-        if (Wtmp.length >= 4) {
-          return true;
-          break;
+        if (tmpArr.length >= winlimit) {
+          for (const winningcell of tmpArr) {
+            this.winners.push(winningcell);
+          }
         }
       }
     }
-    // eof horizontalCheck
-
-    function diagonalCheck() {
-      let actualChipAdr = this.getCellAdress(Cell);
-      let takenby = Cell.cellTakenBy;
-      let tmpSW = [];
-      let tmpSE = [];
-
-      // THis pointer will be set to SW
-      let SWdata = this.getAdjacentCells(this.board.columns[Cell.colNum].cells[Cell.cellNum]);
-
-
-      // First, go all the way SW
-      while (SWdata.SW) {
-        SWdata = this.getAdjacentCells(this.board.columns[SWdata.SW.col].cells[SWdata.SW.cell]);
-      }
-      // Then go ALL the way NE
-      tmpSW.push(SWdata.TC);
-      while (SWdata.NE) {
-        tmpSW.push(SWdata.NE)
-        SWdata = this.getAdjacentCells(this.board.columns[SWdata.NE.col].cells[SWdata.NE.cell]);
-      }
-
-
-      let lastSWval = takenby;
-      let SWtmp = [];
-      this.diagonal = [];
-      for (let i = 0; i < tmpSW.length; i++) {
-        if (tmpSW[i].takenby == lastSWval) {
-          SWtmp.push(this.board.columns[tmpSW[i].col].cells[tmpSW[i].cell]);
-          this.diagonal.push(this.board.columns[tmpSW[i].col].cells[tmpSW[i].cell]);
-          lastSWval = tmpSW[i].takenby;
-        } else {
-          SWtmp = [];
-          this.diagonal = [];
-          continue;
-        }
-        if (SWtmp.length >= 4) {
-          return true;
-          break;
-        }
-      }
-      // EOF SW testing
-
-      // Do same for SE
-      let SEdata = this.getAdjacentCells(this.board.columns[Cell.colNum].cells[Cell.cellNum]);
-
-      // First, go all the way SE
-      while (SEdata.SE) {
-        SEdata = this.getAdjacentCells(this.board.columns[SEdata.SE.col].cells[SEdata.SE.cell]);
-      }
-      // Then go ALL the way NW
-      tmpSE.push(SEdata.TC);
-      while (SEdata.NW) {
-        tmpSE.push(SEdata.NW)
-        SEdata = this.getAdjacentCells(this.board.columns[SEdata.NW.col].cells[SEdata.NW.cell]);
-      }
-
-      let lastSEval = takenby;
-      let SEtmp = [];
-      this.diagonal = [];
-      for (let i = 0; i < tmpSE.length; i++) {
-        if (tmpSE[i].takenby == lastSEval) {
-          SEtmp.push(this.board.columns[tmpSE[i].col].cells[tmpSE[i].cell]);
-          this.diagonal.push(this.board.columns[tmpSE[i].col].cells[tmpSE[i].cell]);
-          lastSEval = tmpSE[i].takenby;
-        } else {
-          SEtmp = [];
-          this.diagonal = [];
-          continue;
-        }
-        if (SEtmp.length >= 4) {
-          // console.table(this.diagonal)
-          return true;
-          break;
-        }
-      }
-    }
-    // eof diagonalCheck
-
-    if (horizontalCheck.call(this)) {
-      this.showWinningChips(this.horizontal);
-      return true;
-    }
-
-    if (verticalCheck.call(this)) {
-      this.showWinningChips(this.vertical);
-      return true;
-    }
-
-    if (diagonalCheck.call(this)) {
-      this.showWinningChips(this.diagonal);
+    // Putting this baby out here so all winning combinations are highlighted 
+    if (this.winners.length >= winlimit) {
+      this.showWinningChips(this.winners);
       return true;
     }
 
