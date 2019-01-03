@@ -9,7 +9,7 @@ class Board extends Component {
   }
 
   makeColumns() {
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 0; i <= 6; i++) {
       this.columns.push(new Column(this.SpelaPage, i));
     }
   }
