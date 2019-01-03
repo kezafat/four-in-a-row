@@ -3,9 +3,10 @@ class PageContent extends Component {
   constructor() {
     super();
     this.startPage = new StartPage();
-    this.spelaPage = new SpelaPage();
+    //this.spelaPage = new SpelaPage();
     this.reglerPage = new ReglerPage();
     this.topplistaPage = new TopplistaPage();
+	this.spelaPage = new SpelaPage(this.topplistaPage.refresh);
     this.missingPage = new MissingPage();
     this.loadLocalDB(); //Plug this puppy in when we are ready to do so (routing data to startpage for now)
   }
