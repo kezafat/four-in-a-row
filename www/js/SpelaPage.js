@@ -380,7 +380,6 @@ class SpelaPage extends Component {
   writeWinner() {
     let that = this;
     JSON._load('scores').then(function (scoresList) {
-      console.log(scoresList);
       //check if scores database is empty or full
       let nscores = scoresList == null ? [] : scoresList;
       //push winner and his score
@@ -400,7 +399,6 @@ class SpelaPage extends Component {
       }
       if (!replaced) nscores.push({ player: winnerName, score: winnerScore });
       //sort descending
-      //nscores.sort(function(a, b){return b.player - a.score});
       nscores.sort(function (a, b) { return a.score - b.score });
       //save data
       JSON._save('scores', nscores);
