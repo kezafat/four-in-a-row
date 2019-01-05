@@ -30,8 +30,8 @@ class SpelaPage extends Component {
     this.diagonal = [];
     this.winning = [];
     this.allowPlay = true;
-	//==>>
-	this.tref=tref;
+    //==>>
+    this.tref = tref;
   }
   botOrHuman0() {
     this.playerType0 = $('input[name=player-0-type]:checked').val();
@@ -374,40 +374,40 @@ class SpelaPage extends Component {
     this.winnerName = winnerName;
     this.winnerPoints = this[winnerPoints];
     this.showWinner = true;
-	  this.writeWinner();
+    this.writeWinner();
     this.render();
   }
-  writeWinner(){
-        let that = this;
-        JSON._load('scores').then(function(scoresList){
-            console.log(scoresList);
-            //check if scores database is empty or full
-            let nscores= scoresList == null ? [] : scoresList;
-            //push winner and his score
-            let winnerName = that.winnerName;
-            let winnerScore = that.winnerPoints;
-            
-            //if player exist and current score is higher than old score
-            let replaced= false
-            for(let i=0; i<nscores.length; i++){
-                if(nscores[i].player == winnerName){
-                    if(nscores[i].score > winnerScore){
-                        nscores[i].score = winnerScore;
-                    }
-                    replaced = true;
-                    break;
-                }
-            }
-            if(!replaced) nscores.push({player: winnerName, score: winnerScore});
-            //sort descending
-            //nscores.sort(function(a, b){return b.player - a.score});
-            nscores.sort(function(a, b){return a.score - b.score});
-            //save data
-            JSON._save('scores',nscores);
-            that.tref();
-        });
+  writeWinner() {
+    let that = this;
+    JSON._load('scores').then(function (scoresList) {
+      console.log(scoresList);
+      //check if scores database is empty or full
+      let nscores = scoresList == null ? [] : scoresList;
+      //push winner and his score
+      let winnerName = that.winnerName;
+      let winnerScore = that.winnerPoints;
+
+      //if player exist and current score is higher than old score
+      let replaced = false
+      for (let i = 0; i < nscores.length; i++) {
+        if (nscores[i].player == winnerName) {
+          if (nscores[i].score > winnerScore) {
+            nscores[i].score = winnerScore;
+          }
+          replaced = true;
+          break;
+        }
+      }
+      if (!replaced) nscores.push({ player: winnerName, score: winnerScore });
+      //sort descending
+      //nscores.sort(function(a, b){return b.player - a.score});
+      nscores.sort(function (a, b) { return a.score - b.score });
+      //save data
+      JSON._save('scores', nscores);
+      that.tref();
+    });
   }
-    
+
 }
 
 
