@@ -248,7 +248,7 @@ class SpelaPage extends Component {
     this.winnerName = winnerName;
     this.winnerPoints = this[winnerPoints];
     this.showWinner = true;
-    this.render()
+    this.render();
   }
 
 }
