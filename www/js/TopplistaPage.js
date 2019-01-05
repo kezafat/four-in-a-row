@@ -8,10 +8,6 @@ class TopplistaPage extends Component {
     this.refresh = function () {
       that.topplistaPageBoard.makeRows();
     }
-    //refreshTopplista
-    this.addEvents({
-      'click .refreshTopplista': 'refresh'
-    });
   }
 
 }
