@@ -55,8 +55,8 @@ class SpelaPage extends Component {
     this.horizontal = [];
     this.diagonal = [];
     this.players = [];
-    this.tmpName0 = 'RÖD';
-    this.tmpName1 = 'GUL';
+    this.tmpName0 = '';
+    this.tmpName1 = '';
     this.chipCount = 0;
     this.player0points = 0;
     this.player1points = 0;
