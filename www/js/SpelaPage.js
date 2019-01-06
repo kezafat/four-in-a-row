@@ -378,12 +378,13 @@ class SpelaPage extends Component {
     this.render();
   }
   writeWinner() {
+    let that = this;
     JSON._load('scores').then(function (scoresList) {
       //check if scores database is empty or full
       let nscores = scoresList == null ? [] : scoresList;
       //push winner and his score
-      this.winnerName = winnerName;
-      this.winnerScore = winnerPoints;
+      let winnerName = that.winnerName;
+      let winnerScore = that.winnerPoints;
 
       //if player exist and current score is higher than old score
       let replaced = false
