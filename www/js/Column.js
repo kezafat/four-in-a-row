@@ -13,7 +13,8 @@ class Column extends Component {
   }
 
   placeChip() {
-    if(!this.SpelaPage.allowPlay){return;}
+    let playerType = this.SpelaPage[`playerType${Number(Board.activePlayer)}`];
+    if (!this.SpelaPage.allowPlay || playerType !== "human") { return; }
     for (let i = this.cells.length; i > 0; i--) {
       let cellData = this.cells[i - 1];
       if (cellData.cellTakenBy === "nochip") {
@@ -25,6 +26,7 @@ class Column extends Component {
 
         if (!this.SpelaPage.checkWin(cellData)) {
           Board.activePlayer = !Board.activePlayer;
+          this.SpelaPage.placeRandomChip()
           this.SpelaPage.render();
         } else {
           // Win is true, so show winning name

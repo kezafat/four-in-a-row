@@ -113,7 +113,44 @@ class SpelaPage extends Component {
       this.players.push(new Player(playerName0, 0, this.playerType0));
       this.players.push(new Player(playerName1, 1, this.playerType1));
       this.gameMode = true;
+      this.placeRandomChip();
       this.render();
+    }
+  }
+
+  placeRandomChip() {
+    let playerType = this[`playerType${Number(Board.activePlayer)}`];
+    if (playerType == "human") {
+      return;
+    }
+
+    let randomCols = [0, 1, 2, 3, 4, 5, 6].sort(function () {
+      return .5 - Math.random();
+    });
+
+    for (const colNum of randomCols) {
+      let min = Math.ceil(500);
+      let max = Math.floor(2000);
+      let botSpeed = Math.floor(Math.random() * (max - min)) + min;
+      for (let i = this.board.columns[colNum].cells.length - 1; i >= 0; i--) {
+        let bottomCell = this.board.columns[colNum].cells[i];
+
+        if (bottomCell.cellTakenBy == "nochip") {
+          setTimeout(() => {
+            bottomCell.cellTakenBy = `chip${Number(Board.activePlayer)}`;
+            let playerPoints = "player" + Number(Board.activePlayer) + "points";
+            this[playerPoints]++;
+            this.chipCount++;
+            this.board.columns[colNum].cellsTaken.push(Board.activePlayer);
+            if (!this.checkWin(bottomCell)) {
+              Board.activePlayer = !Board.activePlayer;
+              this.placeRandomChip();
+            }
+            this.render()
+          }, botSpeed);
+          return;
+        }
+      }
     }
   }
 
