@@ -1,0 +1,13 @@
+body > div {
+  background-image: url("/img/cloud.jpg");
+  background-repeat: inherit;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

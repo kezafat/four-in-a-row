@@ -1,0 +1,38 @@
+.regler-page{
+  .boarder{
+      background: #000000a3;
+      padding: 10px;
+      border-radius: 5px;
+  }
+  .move-img{
+    padding-left:75px;
+    width: 90%;
+    @include media-breakpoint-between(lg, xl) {
+      padding-left: 45px;
+     }
+     @include media-breakpoint-only(md) {
+      padding:210px 0px 0px 5px;
+      width: 110%;
+    }
+  }
+  .move-top-img{
+    padding-left:75px;
+    width: 90%;
+    @include media-breakpoint-between(lg, xl) {
+      padding: 10px 0px 80px 45px;
+    }
+    @include media-breakpoint-only(lg) {
+      padding:85px 0px 100px 45px;
+     }
+    @include media-breakpoint-only(md) {
+      padding:85px 0px 85px 45px;
+     }
+
+  }
+
+  .hide-img{
+    @include media-breakpoint-between(xs, sm) {
+    display: none;
+    }
+  }
+}

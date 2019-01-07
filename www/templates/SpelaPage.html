@@ -1,0 +1,115 @@
+<section class="gamePage">
+  <div class="${this.gameMode ? 'd-none' : 'd-block'}">
+    <section>
+      <div>
+        <div class="row">
+          <div class="col-12">
+            <p class="mt-5 display-4">Ange spelare ett <span>${this.playerType0 === 'human' ? ' 🤓' : ' 🤖'}</span></p>
+            <p class="${this.validate0 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
+            <div class="input-group drop-shadow">
+              <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn"
+                aria-describedby="button-addon4" value="${this.tmpName0}">
+              <div class="btn-group btn-group-toggle btn-toggle-0" data-toggle="buttons">
+                <label class="btn btn-danger zero-radius">
+                  <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked"
+                    aria-pressed="true">Människa
+                </label>
+                <label class="btn btn-danger">
+                  <input type="radio" name="player-0-type" id="option2" autocomplete="off" value="pc"> Dator
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p class="mt-5 display-4">Ange spelare två <span>${this.playerType1 === 'human' ? ' 🤓' : ' 🤖'}</span></p>
+            <p class="${this.validate1 ? 'd-none' : 'd-block'}">Namnet måste vara minst två bokstäver och max åtta</p>
+            <div class="input-group drop-shadow">
+              <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn"
+                aria-describedby="button-addon4" value="${this.tmpName1}">
+              <div class="btn-group btn-group-toggle btn-toggle-1" data-toggle="buttons">
+                <label class="btn btn-warning zero-radius">
+                  <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked"
+                    aria-pressed="true">Människa
+                </label>
+                <label class="btn btn-warning">
+                  <input type="radio" name="player-1-type" id="option2" autocomplete="off" value="pc"> Dator
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mt-3">
+            <a href="/" class="btn btn-danger float-left drop-shadow">Avbryt</a>
+            <a href="#" class="btn btn-success float-right drop-shadow start-btn" role="button">Starta spelet</a>
+          </div>
+        </div>
+    </section>
+  </div>
+  <section class="${this.gameMode ? 'd-block' : 'd-none'} noBg text-center">
+
+
+    <div class="winBox ${this.showWinner ? 'd-block' : 'd-none'}">
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <div class="jumbotron p-1">
+              <p>GRATTIS, ${this.winnerName}!</p>
+              <p>Du vann med endast ${this.winnerPoints} drag.</p>
+              <hr class="my-4">
+              <button class="btn btn-primary abort-game">Spela igen</button>
+              <a class="btn btn-success" href="/topplista">Se topplistan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="winBox ${this.showTie ? 'd-block' : 'd-none'}">
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <div class="jumbotron p-1">
+              <p>Näääää, det blev oavgjort :(</p>
+              <hr class="my-4">
+              <button class="btn btn-primary abort-game">Spela igen</button>
+              <a class="btn btn-success" href="/topplista">Se topplistan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-2">
+        <p>${this.origName0}'s drag: ${this.player0points}</p>
+      </div>
+      <div class="col-8 d-flex flex-column">
+        <p>Drag till oavgjort: ${42 - this.chipCount}</p>
+        <button class="btn btn-danger active abort-game mb-2" role="button">Avbryt</button>
+      </div>
+      <div class="col-2">
+        <p>${this.origName1}'s drag: ${this.player1points}</p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <p class="d-inline playername ${!Board.activePlayer ? 'shown' : 'hidden'} player0">${this.tmpName0}</p>
+      </div>
+      <div class="col-8 board-box">
+        ${this.board}
+      </div>
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <p class="playername ${Board.activePlayer ? 'shown' : 'hidden'} player1">${this.tmpName1}</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="game-over">
+    ${this.alert}
+  </div>
+</section>

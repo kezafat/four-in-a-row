@@ -1,0 +1,9 @@
+.fa {
+  padding: 0.1rem;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    opacity: 0.7;
+  }
+}

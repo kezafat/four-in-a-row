@@ -1,0 +1,51 @@
+// All the styles for the baseelement of startpage!
+// Keeping styles like this will allow for custom styles that will not affect other elements on other pages.
+// Base element has .startpage so that the general site styling wont affect my styles.
+.startpage {
+  h1,
+  h2 {
+    font-family: $startpage_heading_font;
+    word-spacing: 2px;
+    letter-spacing: 2px;
+    @include media-breakpoint-down(sm) {
+      font-size: 2rem;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 3rem;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 4rem;
+    }
+  }
+  h4{
+    @include media-breakpoint-down(sm) {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+  p{
+    @include media-breakpoint-down(sm) {
+      font-size: 0.8rem;
+    }
+  }
+  .card{
+    background-color: #343a40;
+  }
+  .bannertron {
+    .jumbotron {
+      background-image: url(../img/startpage/bannerbg.png);
+      background-position: center;
+      background-size: cover;
+      color: #fff;
+      text-shadow: 0 1px 2px #000;
+      &>* {
+        opacity: 0.85;
+      }
+      & > div{
+        background: #000000a3;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
