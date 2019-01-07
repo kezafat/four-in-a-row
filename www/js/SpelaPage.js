@@ -393,7 +393,7 @@ class SpelaPage extends Component {
           if (nscores[i].score > winnerScore) {
             nscores[i].score = winnerScore;
           }
-          replaced = true;
+          replaced = false;
           break;
         }
       }
