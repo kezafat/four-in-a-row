@@ -302,9 +302,7 @@ class SpelaPage extends Component {
       for (let i = 0; i < nscores.length; i++) {
         if (nscores[i].player == winnerName) {
           if (nscores[i].score > winnerScore) {
-            nscores[i].score = winnerScore;
           }
-          replaced = true;
           break;
         }
       }
