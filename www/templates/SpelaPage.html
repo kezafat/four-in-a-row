@@ -10,7 +10,7 @@
               <input type="text" class="form-control player-0-name" placeholder="Namn" aria-label="Namn"
                 aria-describedby="button-addon4" value="${this.tmpName0}">
               <div class="btn-group btn-group-toggle btn-toggle-0" data-toggle="buttons">
-                <label class="btn btn-danger active zero-radius">
+                <label class="btn btn-danger zero-radius">
                   <input type="radio" name="player-0-type" id="option1" autocomplete="off" value="human" checked="checked"
                     aria-pressed="true">Människa
                 </label>
@@ -29,7 +29,7 @@
               <input type="text" class="form-control player-1-name" placeholder="Namn" aria-label="Namn"
                 aria-describedby="button-addon4" value="${this.tmpName1}">
               <div class="btn-group btn-group-toggle btn-toggle-1" data-toggle="buttons">
-                <label class="btn btn-warning active zero-radius">
+                <label class="btn btn-warning zero-radius">
                   <input type="radio" name="player-1-type" id="option1" autocomplete="off" value="human" checked="checked"
                     aria-pressed="true">Människa
                 </label>
@@ -84,14 +84,14 @@
 
     <div class="row text-center">
       <div class="col-2">
-        <p>${this.origName0}s drag: ${this.player0points}</p>
+        <p>${this.origName0}'s drag: ${this.player0points}</p>
       </div>
       <div class="col-8 d-flex flex-column">
         <p>Drag till oavgjort: ${42 - this.chipCount}</p>
         <button class="btn btn-danger active abort-game mb-2" role="button">Avbryt</button>
       </div>
       <div class="col-2">
-        <p>${this.origName1}s drag: ${this.player1points}</p>
+        <p>${this.origName1}'s drag: ${this.player1points}</p>
       </div>
     </div>
     <div class="row text-center">

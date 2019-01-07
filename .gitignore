@@ -71,3 +71,4 @@ typings/
 
 #Lets keep the JSONs ignored aswell. Each dev can have their own localDB
 www/*.json
+www/json/scores\.json
